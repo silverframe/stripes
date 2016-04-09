@@ -1,1 +1,1 @@
-this is our project
+Our Project! 
