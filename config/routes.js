@@ -48,6 +48,9 @@ router.route('/products')
     .get(productsController.getAll)
     .post(productsController.create)
 
+router.route('/products/new')
+    .get(productsController.newProduct)
+
 //=============== Routes to Sales Controller ===========================
 router.route('/sales')
     .get(salesController.getAll)
