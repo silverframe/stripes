@@ -28,27 +28,6 @@ function authenticatedUser(req, res, next){
 router.route('/')
     .get(staticsController.home)
 
-
-//---------------- Serve Product static pages-----------------------
-
-//Example use express to serve a static html file (Other method is to use the public folder)
-router.route('/pages')
-    .get(staticsController.test)
-
-
-//---------------- Serve Sales static pages-------------------------
-
-
-
-
-
-//---------------- Serve Stock static pages-------------------------
-
-
-
-
-
-
 //=============== API Routes to Users Controller ========================
 router.route('/secret')
     .get(authenticatedUser, usersController.getSecret)
