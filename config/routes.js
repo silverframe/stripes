@@ -51,11 +51,11 @@ router.route('/products')
 //=============== Routes to Sales Controller ===========================
 router.route('/sales')
     .get(salesController.getAll)
-    .post(salesController.create)
+    .post(salesController.createSale)
 router.route('/sales/:id')
-  .get(salesController.getSale);
-  .patch(salesController.updateSale);
-  .delete(salesController.removeSale);
+  .get(salesController.getSale)
+  .patch(salesController.updateSale)
+  .delete(salesController.removeSale)
 //=============== Routes to Stocks Controller ==========================
 router.route('/stocks')
     .get(stocksController.getAll)

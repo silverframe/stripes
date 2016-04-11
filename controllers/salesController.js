@@ -1,16 +1,17 @@
 'use strict'
 
-var Sales = require('../models/salesOrder')
+var SalesOrder = require('../models/salesOrder')
 
 // GET
 function getAll(request, response){
- Sale.find((error, sales) => {
+ SalesOrder.find((error, sales) => {
+   console.log(sales);
    if (error){
      var res = {message: 'Sale not found'};
      response.json(res);
      return;
    }
-   response.render('layout', {sales: sales});
+   response.json({sales: sales});
  });
 }
 
@@ -18,9 +19,6 @@ function getAll(request, response){
 function createSale(request, response) {
 
   var sale = new Sale();
-  sale.name = request.body.name;
-  sale.color = request.body.color;
-
   sale.save(err=> {
     if(err) return response.json({message:"could not create sale"});
     response.redirect('/sales');
