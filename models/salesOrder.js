@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
-var Person = mongoose.model('Product', productSchema);
+var Product = mongoose.model('Product', productSchema);
 
 var salesOrderSchema = new mongoose.Schema({
     orderNo:        { type: Number},
     customerName:   { type: String },
+    customerEmail:  { type : String},
     date:           { type: Date, default: Date.now },
     salesTotal:     { type: Number },
     items :         [
