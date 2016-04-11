@@ -49,9 +49,10 @@ router.route('/products')
     .post(productsController.create)
 
 //=============== Routes to Sales Controller ===========================
+
 router.route('/sales')
-    .get(salesController.getAll)
-    .post(salesController.create)
+    .get(salesController.getAll);
+    .post(salesController.create);
 
 //=============== Routes to Stocks Controller ==========================
 router.route('/stocks')
