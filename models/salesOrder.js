@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var Product = mongoose.model('Product', productSchema);
+var Schema = mongoose.Schema;
 
-var salesOrderSchema = new mongoose.Schema({
+var salesOrderSchema = new Schema({
     orderNo:        { type: Number },
     customerName:   { type: String },
     customerEmail:  { type : String },
