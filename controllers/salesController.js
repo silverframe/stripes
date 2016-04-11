@@ -1,44 +1,72 @@
 'use strict'
 
-//GET /api/sales
-function getAll(req, res) {
-    //var result = candy.all();
-    //res.status(200).json(result.value);
-  res.send('Get all Sales')
+var Sale = require('../models/salesOrder');
+
+// GET
+function getAll(request, response){
+ Sale.find((error, sale) => {
+   if (error){
+     var res = {message: 'Sale not found'};
+     response.json(res);
+     return;
+   }
+   response.render('layout', {sales: sales});
+ });
 }
 
-//POST /api/sales
-function create(req, res) {
-    //var result = candy.create(req.body.name,req.body.color);
-    //res.status(200).json(result.value);
-    res.send('Create Sale')
+// POST
+function createSale(request, response) {
+
+  var sale = new Sale();
+
+  sale.save(err=> {
+    if(err) return response.json({message:"could not create sale"});
+    response.redirect('/sale');
+  });
+  }
+
+// GET
+function getSale(request, response) {
+  var id = request.params.id;
+
+  Sale.findById({_id: id}, function(error, sale) {
+    if(error) response.json({message: 'Could not find sale b/c:' + error});
+
+    response.render('show', {sales: sales});
+  });
 }
 
-//GET /api/sales/:id
-function getById(req, res) {
-    //var result = candy.show(req.params.id);
-    //res.status(200).json(result.value);
-    res.send('Get Sale by id')
+function updateSale(request, response) {
+  var id = request.params.id;
+
+  Sale.findById({_id: id}, function(error, sale) {
+    if(error) response.json({message: 'Could not find sale b/c:' + error});
+
+    if(request.body.name) sale.name = request.body.name;
+    if(request.body.color) sale.color = request.body.color;
+
+    sale.save(function(error) {
+      if(error) response.json({messsage: 'Could not update sale b/c:' + error});
+
+      response.json({message: 'Sales Order successfully updated'});
+    });
+  });
 }
 
-//PUT /api/sales/:id
-function updateById(req, res) {
-    //var result = candy.update(req.params.id,req.body.name,req.body.color);
-    //res.status(200).json(result.value);
-    res.send('Update Sale by id')
-}
+function removeSale(request, response) {
+  var id = request.params.id;
 
-//DELETE /api/sales/:id
-function deleteById(req, res) {
-    //var result = candy.destroy(req.params.id);
-    //res.status(200).json(result.value);
-    res.send('Delete Sale by id')
+  Sale.remove({_id: id}, function(error) {
+    if(error) response.json({message: 'Could not delete sales order b/c:' + error});
+
+    response.json({message: 'Sales Order successfully deleted'});
+  });
 }
 
 module.exports = {
-  getAll:       getAll,
-  create:       create,
-  getById:      getById,
-  updateById:   updateById,
-  deleteById:    deleteById
+  getAll: getAll,
+  createSale: createSale,
+  getSale: getSale,
+  updateSale: updateSale,
+  removeSale: removeSale
 }
