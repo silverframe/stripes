@@ -67,6 +67,8 @@ app.use(function(req, res, next){
 });
 
 var routes = require(__dirname + "/config/routes");
-app.use(routes);
+var apiRoutes = require(__dirname + "/config/apiRoutes");
+app.use(routes)
+app.use(apiRoutes);
 
 app.listen(4000);
