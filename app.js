@@ -1,8 +1,8 @@
 var express        = require('express');
 var app            = express();
 var mongoose       = require('mongoose');
-expressJWT = require('express-jwt'),
-jwt = require('jsonwebtoken'),
+var expressJWT     = require('express-jwt');
+var jwt            = require('jsonwebtoken');
 var passport       = require('passport');
 var flash          = require('connect-flash');
 var ejsLayouts     = require("express-ejs-layouts");
