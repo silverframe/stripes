@@ -53,14 +53,8 @@ router.route('/sales')
     .get(salesController.getAll)
     .post(salesController.create)
 router.route('/sales/:id')
-
-  // GET return specific candy
-  .get(salesController.getSale)
-
-  // PATCH update existing candy
-  .patch(salesController.updateSale)
-
-  // DELETE remove specific candy from DB
+  .get(salesController.getSale);
+  .patch(salesController.updateSale);
   .delete(salesController.removeSale);
 //=============== Routes to Stocks Controller ==========================
 router.route('/stocks')
