@@ -1,0 +1,43 @@
+[{
+    "sku":    "P0001"          ,
+    "name":   "Getting Started with the Photon",
+    "description":  "This book teaches you how to begin with the Particle development tools, deploy your sketches over WiFi, and build electronic projects that take advantage of the Photon's processing power, cloud platform, and input/output pins. Filled with projects, examples and tips, Getting Started with the Photon is useful whether you're new to electronics or an advanced user looking to get started with Particle.",
+    "supplier":     "Popular",
+    "productType": "Guide Book",
+    "brand":        "Dr. Simon Monk",
+    "tags":         ["book","guide","howtobooks"],
+    "quantity":     10,
+    "active":       true,
+    "costPrice":  15,
+    "sellingPrice": 20,
+    "imageUrl":     "http://ecx.images-amazon.com/images/I/51OQQguJ%2BAL._SX322_BO1,204,203,200_.jpg"
+},
+{
+    "sku":    "P0002"          ,
+    "name":   "Why i love my Pi",
+    "description":  "This book teaches you how to begin with the Particle development tools, deploy your sketches over WiFi, and build electronic projects that take advantage of the Photon's processing power, cloud platform, and input/output pins. Filled with projects, examples and tips, Getting Started with the Photon is useful whether you're new to electronics or an advanced user looking to get started with Particle.",
+    "supplier":     "Popular",
+    "productType": "Guide Book",
+    "brand":        "Dr. Simon Monk",
+    "tags":         ["book","guide","howtobooks"],
+    "quantity":     10,
+    "active":       true,
+    "costPrice":  15,
+    "sellingPrice": 40,
+    "imageUrl":     "http://ecx.images-amazon.com/images/I/51OQQguJ%2BAL._SX322_BO1,204,203,200_.jpg"
+},
+{
+    "sku":    "P0003"          ,
+    "name":   "Why i love Allan",
+    "description":  "This book teaches you how to begin with the Particle development tools, deploy your sketches over WiFi, and build electronic projects that take advantage of the Photon's processing power, cloud platform, and input/output pins. Filled with projects, examples and tips, Getting Started with the Photon is useful whether you're new to electronics or an advanced user looking to get started with Particle.",
+    "supplier":     "Popular",
+    "productType": "Guide Book",
+    "brand":        "Dr. Simon Monk",
+    "tags":         ["book","guide","howtobooks"],
+    "quantity":     10,
+    "active":       true,
+    "costPrice":  15,
+    "sellingPrice": 50,
+    "imageUrl":     "http://ecx.images-amazon.com/images/I/51OQQguJ%2BAL._SX322_BO1,204,203,200_.jpg"
+}
+]

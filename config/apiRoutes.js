@@ -24,39 +24,48 @@ function authenticatedUser(req, res, next){
  * under its corresponding section below
  */
 
-//=============== Routes to Statics Controller ==========================
-router.route('/')
-    .get(staticsController.home)
+//=============== API Routes to Users Controller ========================
 
-//=============== Routes to Users Controller ========================
-router.route('/secret')
-    .get(authenticatedUser, usersController.getSecret)
 
-router.route('/signup')
-  .get(usersController.getSignup)
-  .post(usersController.postSignup)
+//=============== API Routes to Products Controller ========================
 
-router.route('/login')
-  .get(usersController.getLogin)
-  .post(usersController.postLogin)
-
-router.route('/logout')
-  .get(usersController.getLogout)
-
-//=============== Routes to Products Controller ==========================
-router.route('/products')
+router.route('/api/products')
     .get(productsController.getAll)
     .post(productsController.create)
 
-//=============== Routes to Sales Controller ===========================
-router.route('/sales')
+router.route('/api/products/:id')
+    .get(productsController.getById)
+    .put(productsController.updateById)
+    .delete(productsController.deleteById)
+
+
+//=============== API Routes to Sales Controller ===========================
+
+router.route('/api/sales')
     .get(salesController.getAll)
     .post(salesController.create)
 
-//=============== Routes to Stocks Controller ==========================
-router.route('/stocks')
+router.route('/api/sales/:id')
+    .get(salesController.getById)
+    .put(salesController.updateById)
+    .delete(salesController.deleteById)
+
+
+//=============== API Routes to Stocks Controller ==========================
+
+router.route('/api/stocks')
     .get(stocksController.getAll)
     .post(stocksController.create)
+
+router.route('/api/stocks/:id')
+    .get(stocksController.getById)
+    .put(stocksController.updateById)
+    .delete(stocksController.deleteById)
+
+
+//=============== Routes for Json Web Token (To be implemented)=============
+
+
 
 //================ End of Routes =======================================
 
