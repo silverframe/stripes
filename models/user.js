@@ -7,7 +7,7 @@ var userSchema = mongoose.Schema({
     email        : String,
     password     : String,
     organization : String,
-    role         : String
+    role         : {type: String, enum: ['Supervisor', 'Sales', 'Store']}
   }
 });
 
