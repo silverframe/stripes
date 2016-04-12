@@ -21,21 +21,52 @@ function create(req, res) {
     // you want to create a new stock adjustment
     var stockAdjustment = new StockAdjustment();
     stockAdjustment.reason = req.body.reason;
-
-    // Create stockAdjustmentItem before you can push it into stockAdjustment
-    Product.findById( req.body.productId, function( err, product){
-        var stockAdjustmentItem = new StockAdjustmentItem({
-        // It seems like you can either throw in the entire product object or just the product id as a value for the product key and mongoose will only store the database
-        product:  product._id,
-        qtyChange:  req.body.qtyChange
-        });
-        stockAdjustmentItem.save();
-        stockAdjustment.adjustmentList.push(stockAdjustmentItem)
-    })
     stockAdjustment.notes = req.body.notes;
     stockAdjustment.user = currentUser;
+    // need to create an if else statement
+    if ( Array.isArray(req.body.productId) ) {
+      // Create stockAdjustmentItem before you can push it into stockAdjustment
+      for (let i=0; i < req.body.productId.length; i++) {
+          let qtyChange = req.body.qtyChange[i]
+          //  old way to do this if we didnt have let
+          // (function(qtyChange){
+          Product.findById( req.body.productId[i], function( err, product){
+              var stockAdjustmentItem = new StockAdjustmentItem({
+              // It seems like you can either throw in the entire product object or just the product id as a value for the product key and mongoose will only store the database
+              product:  product,
+              qtyChange:  qtyChange
+              });
+              stockAdjustmentItem.save( function(err, item) {
+                  // console.log('item save...');
+                  stockAdjustment.adjustmentList.push(item)
+                  // console.log("inside: " + i)
+                  if (i === (req.body.productId.length - 1) ) {
+                    stockAdjustment.save( function(err, x){
+                      // console.log('stock save');
+                    });
+                  }
+              });
+          })
+          // })();
+      }
+    } else {
+        let qtyChange = req.body.qtyChange
+        Product.findById( req.body.productId, function( err, product){
+            console.log(qtyChange)
+            var stockAdjustmentItem = new StockAdjustmentItem({
+            product:  product,
+            qtyChange:  qtyChange
+            });
+            stockAdjustmentItem.save( function(err, item) {
+                stockAdjustment.adjustmentList.push(item)
+                stockAdjustment.save();
+            });
+        })
+    }
+
+    // if there is a error check whether user is logged in
     stockAdjustment.save( function(err) {
-    if(err) return response.json({message: "could not make stock adjustment"});
+    if(err) return res.json({message: err.message});
     // putting a return is equivalent to an else
     res.redirect('/stock_adjustment')
     })
