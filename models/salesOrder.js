@@ -1,18 +1,19 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var salesOrderItems = require('./salesOrderItems')
 
-var salesOrderSchema = new Schema({
+var SalesOrderSchema = new Schema({
     orderNo:        { type: Number },
     customerName:   { type: String },
     customerEmail:  { type : String },
-    date:           { type: Date, default: Date.now },
-    salesTotal:     { type: Number },
-    itemList :     [
-      {
-        product: {type: Schema.Types.ObjectId, ref: 'Product', required: true},
-        qty: Number
-      }
-    ]
+    itemList:       [salesOrderItems.schema],
+    createdDate:    { type: Date, default: Date.now },
+    // itemList :     [
+    //   {
+    //     product: {type: Schema.Types.ObjectId, ref: 'Product', required: true},
+    //     qty: Number
+    //   } ]
+
 });
 
-module.exports = mongoose.model('SalesOrder', salesOrderSchema);
+module.exports = mongoose.model('SalesOrder', SalesOrderSchema);

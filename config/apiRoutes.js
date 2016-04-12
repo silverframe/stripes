@@ -47,7 +47,7 @@ router.route('/api/sales')
 
 router.route('/api/sales/:id')
   .get(salesController.getSale)
-  .patch(salesController.updateSale)
+  .put(salesController.updateSale)
   .delete(salesController.removeSale)
 
 //=============== API Routes to Stocks Controller ==========================
