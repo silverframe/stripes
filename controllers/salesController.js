@@ -21,7 +21,7 @@ function getAll(request, response){
 // POST
 function createSale(request, response) {
 
-  var sale = new Sale();
+  var sale = new SalesOrder();
 
   sale.save(err=> {
     if(err) return response.json({message:"could not create sale"});
