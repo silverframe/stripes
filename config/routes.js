@@ -63,9 +63,20 @@ router.route('/sales/:id')
 router.route('/sales/new')
   .post(salesController.createSale)
 //=============== Routes to Stocks Controller ==========================
-router.route('/stocks')
+router.route('/stock_adjustment')
     .get(stocksController.getAll)
     .post(stocksController.create)
+
+router.route('/stock_adjustment/new')
+    .get(stocksController.getNew)
+
+
+router.route('/stock_adjustment/:id')
+    // only get request and no patch or delete request for inventory security
+    // can consider allowing it later for certain users (supervisor)
+    .get(stocksController.getById)
+
+
 
 //================ End of Routes =======================================
 

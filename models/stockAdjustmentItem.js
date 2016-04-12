@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
+// var Product = require('./product')
+// why dont we need this
 
 var StockAdjustmentItemSchema = new mongoose.Schema({
-  product:      { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+  product:      { type: mongoose.Schema.ObjectId, ref: 'Product', required: true },
   qtyChange: 	  { type: Number, required: true }
 });
 

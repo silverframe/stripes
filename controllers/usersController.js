@@ -21,7 +21,7 @@ function getLogin(req, res) {
     res.render('login', {message: req.flash('errorMessage') });
 }
 
-// POST /login 
+// POST /login
 function postLogin(req, res) {
     var loginStrategy = passport.authenticate('local-login', {
         successRedirect: '/',
