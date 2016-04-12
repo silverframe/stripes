@@ -24,17 +24,13 @@ function create(req, res) {
     stockAdjustment.notes = req.body.notes;
     stockAdjustment.user = currentUser;
     // need to create an if else statement
-    console.log(req.body.sku)
-    console.log(req.body)
     if ( Array.isArray(req.body.sku) ) {
-      console.log("hello Array")
       // Create stockAdjustmentItem before you can push it into stockAdjustment
       for (let i=0; i < req.body.sku.length; i++) {
           let qtyChange = req.body.qtyChange[i]
           //  old way to do this if we didnt have let
           // (function(qtyChange){
           Product.findOne( {'sku': req.body.sku[i]}, function( err, product){
-              console.log("hello world")
               var stockAdjustmentItem = new StockAdjustmentItem({
               // It seems like you can either throw in the entire product object or just the product id as a value for the product key and mongoose will only store the database
               product:  product,
