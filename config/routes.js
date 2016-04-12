@@ -2,7 +2,9 @@
 
 var express     = require('express');
 var router      = express.Router();
+var bodyParser = require('body-parser'); //parses information from POST
 var passport    = require("passport");
+var methodOverride = require('method-override'); //used to manipulate POST
 
 
 //Reference to individual controller files
@@ -48,8 +50,14 @@ router.route('/products')
     .get(productsController.getAll)
     .post(productsController.create)
 
+
 router.route('/products/new')
     .get(productsController.newProduct)
+
+router.route('/products/:id')
+    .get(productsController.editProduct)
+    .patch(productsController.updateProduct)
+    .delete(productsController.deleteProduct)
 
 //=============== Routes to Sales Controller ===========================
 
