@@ -13,9 +13,14 @@ function getAll(request, response){
      return;
    }
 
-   response.json({sales: sales});
+   response.render('sales/index', {sales: sales});
 
  });
+}
+
+function getNew(req, res) {
+    // we may need to pass in the user object
+    res.render('sales/new');
 }
 
 // POST
@@ -33,16 +38,16 @@ function createSale(request, response) {
 function getSale(request, response) {
   var id = request.params.id;
 
-  Sale.findById({_id: id}, function(error, sale) {
+  SalesOrder.findById({_id: id}, function(error, salesOrder) {
     if(error) response.json({message: 'Could not find sale b/c:' + error});
-    response.render('show', {sales: sales});
+    response.render('sales/show', {salesOrder: salesOrder});
   });
 }
 
 function updateSale(request, response) {
   var id = request.params.id;
 
-  Sale.findById({_id: id}, function(error, sale) {
+  SalesOrder.findById({_id: id}, function(error, sale) {
     if(error) response.json({message: 'Could not find sale b/c:' + error});
 
     sale.save(function(error) {
@@ -56,17 +61,18 @@ function updateSale(request, response) {
 function removeSale(request, response) {
   var id = request.params.id;
 
-  Sale.remove({_id: id}, function(error) {
+  SalesOrder.remove({_id: id}, function(error) {
     if(error) response.json({message: 'Could not delete sales order b/c:' + error});
 
-    response.json({message: 'Sales Order successfully deleted'});
+    response.redirect('/sales');
   });
 }
 
 module.exports = {
   getAll: getAll,
-  createSale: createSale,
+  getNew: getNew,
   getSale: getSale,
+  createSale: createSale,
   updateSale: updateSale,
   removeSale: removeSale
 }

@@ -3,7 +3,6 @@ table, th, td {
   padding: 5px 10px;
 }
 </style>
-
 <table class = "table-responsive">
   <tr>
     <th>Customer Name</th>
@@ -11,7 +10,6 @@ table, th, td {
     <th>Item</th>
     <th>Date Created</th>
   </tr>
-<% sales.forEach(salesOrder=> { %>
   <tr>
     <td><%= salesOrder.customerName %></td>
     <td><%= salesOrder.customerEmail %></td>
@@ -26,5 +24,4 @@ table, th, td {
       </form>
     </td>
   </tr>
-  <% }) %>
 </table>

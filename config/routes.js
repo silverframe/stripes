@@ -56,12 +56,17 @@ router.route('/products/new')
 router.route('/sales')
   .get(salesController.getAll)
   .post(salesController.createSale)
+
+router.route('/sales/new')
+  .get(salesController.getNew)
+
+
 router.route('/sales/:id')
   .get(salesController.getSale)
   .patch(salesController.updateSale)
   .delete(salesController.removeSale)
-router.route('/sales/new')
-  .post(salesController.createSale)
+
+
 //=============== Routes to Stocks Controller ==========================
 router.route('/stock_adjustment')
     .get(stocksController.getAll)
