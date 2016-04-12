@@ -48,12 +48,18 @@ router.route('/products')
     .get(productsController.getAll)
     .post(productsController.create)
 
+router.route('/products/new')
+    .get(productsController.newProduct)
+
 //=============== Routes to Sales Controller ===========================
 
 router.route('/sales')
-    .get(salesController.getAll);
-    .post(salesController.create);
-
+    .get(salesController.getAll)
+    .post(salesController.createSale)
+router.route('/sales/:id')
+  .get(salesController.getSale)
+  .patch(salesController.updateSale)
+  .delete(salesController.removeSale)
 //=============== Routes to Stocks Controller ==========================
 router.route('/stocks')
     .get(stocksController.getAll)

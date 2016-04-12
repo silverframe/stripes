@@ -1,16 +1,20 @@
 'use strict'
 
-var Sale = require('../models/salesOrder');
+var SalesOrder = require('../models/salesOrder')
 
 // GET
 function getAll(request, response){
- Sale.find((error, sale) => {
+ SalesOrder.find((error, sales) => {
+   console.log(sales);
+
    if (error){
      var res = {message: 'Sale not found'};
      response.json(res);
      return;
    }
-   response.render('layout', {sales: sales});
+
+   response.json({sales: sales});
+
  });
 }
 
@@ -21,7 +25,7 @@ function createSale(request, response) {
 
   sale.save(err=> {
     if(err) return response.json({message:"could not create sale"});
-    response.redirect('/sale');
+    response.redirect('/sales');
   });
   }
 
@@ -31,7 +35,6 @@ function getSale(request, response) {
 
   Sale.findById({_id: id}, function(error, sale) {
     if(error) response.json({message: 'Could not find sale b/c:' + error});
-
     response.render('show', {sales: sales});
   });
 }
@@ -42,13 +45,10 @@ function updateSale(request, response) {
   Sale.findById({_id: id}, function(error, sale) {
     if(error) response.json({message: 'Could not find sale b/c:' + error});
 
-    if(request.body.name) sale.name = request.body.name;
-    if(request.body.color) sale.color = request.body.color;
-
     sale.save(function(error) {
       if(error) response.json({messsage: 'Could not update sale b/c:' + error});
 
-      response.json({message: 'Sales Order successfully updated'});
+      response.json({message: 'Sale successfully updated'});
     });
   });
 }

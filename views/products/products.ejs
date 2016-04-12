@@ -1,0 +1,34 @@
+<h1>EShop</h1>
+<div class="container">
+  <div class="row">
+    <style>
+      table, th, td {
+      /*border: 2px solid black;*/
+      padding: 5px 10px;
+      }
+    </style>
+    <table>
+    <tr>
+      <th>SKU</th>
+      <th>Name</th>
+      <th>Product Type</th>
+      <th>Brand</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Active</th>
+    </tr>
+    <% products.forEach( product => { %>
+    <tr>
+      <td><%= product.sku %></td>
+      <td><%= product.name %></td>
+      <td><%= product.productType %></td>
+      <td><%= product.brand %></td>
+      <td><%= product.quantity %></td>
+      <td><%= product.sellingPrice %></td>
+      <td><%= product.active %></td>
+    </tr>
+    <% } ) %>
+    </table>
+  </div>
+</div>
+<hr>

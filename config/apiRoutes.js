@@ -43,13 +43,12 @@ router.route('/api/products/:id')
 
 router.route('/api/sales')
     .get(salesController.getAll)
-    .post(salesController.create)
+    .post(salesController.createSale)
 
 router.route('/api/sales/:id')
-    .get(salesController.getById)
-    .put(salesController.updateById)
-    .delete(salesController.deleteById)
-
+  .get(salesController.getSale)
+  .patch(salesController.updateSale)
+  .delete(salesController.removeSale)
 
 //=============== API Routes to Stocks Controller ==========================
 
