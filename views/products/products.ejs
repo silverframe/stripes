@@ -2,11 +2,14 @@
 <div class="container">
   <div class="row">
     <style>
-      table, th, td {
+      h1, table, th, td {
       /*border: 2px solid black;*/
       padding: 5px 10px;
       }
     </style>
+
+    <a href="/products/new" class="btn btn-default" >Create Product</a>
+
     <table>
     <tr>
       <th>SKU</th>
@@ -16,6 +19,7 @@
       <th>Quantity</th>
       <th>Price</th>
       <th>Active</th>
+      <th>Action</th>
     </tr>
     <% products.forEach( product => { %>
     <tr>
@@ -26,6 +30,14 @@
       <td><%= product.quantity %></td>
       <td><%= product.sellingPrice %></td>
       <td><%= product.active %></td>
+      <td>
+        <a class="btn btn-primary" href= <%= "/products/" + product._id %> >Edit Product</a>
+      </td>
+      <td>
+        <form method="POST" action=<%= "/products/" + product._id + "?_method=DELETE" %> >
+          <button type="submit" class="btn btn-danger col-md-12">Delete Product</button>
+        </form>
+      </td>
     </tr>
     <% } ) %>
     </table>
