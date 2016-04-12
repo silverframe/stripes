@@ -1,60 +1,74 @@
 <h2>Create Product</h2>
 
-<form method="post" action="/product">
-  <div class="form-group">
+<form method="post" action="/products">
+  <div class="form-group col-md-4">
     <label for="sku">SKU</label>
-    <input class="form-control" type="text" name="sku" id="sku">
+    <input class="form-control" type="text" name="product[sku]" id="sku">
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label for="name">Name</label>
-    <input class="form-control" type="text" name="name" id="name">
+    <input class="form-control" type="text" name="product[name]" id="name">
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label for="description">Description</label>
-    <input class="form-control" type="text" name="description" id="description">
+    <input class="form-control" type="text" name="product[description]" id="description">
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label for="supplier">Supplier</label>
-    <input class="form-control" type="text" name="supplier" id="supplier">
+    <input class="form-control" type="text" name="product[supplier]" id="supplier">
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label for="productType">Product Type</label>
-    <input class="form-control" type="text" name="productType" id="productType">
+    <input class="form-control" type="text" name="product[productType]" id="productType">
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label for="brand">Brand</label>
-    <input class="form-control" type="text" name="brand" id="brand">
+    <input class="form-control" type="text" name="product[brand]" id="brand">
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label for="tags">Tags</label>
-    <input class="form-control" type="text" name="tags" id="tags">
+    <input class="form-control" type="text" name="product[tags]" id="tags">
   </div>
 
-  <div class="form-group">
+  <!-- <div class="form-group col-md-4">
+    <label for="previousCost">Previous Cost</label>
+    <input class="form-control" type="text" name="product[previousCost]" id="previousCost">
+  </div> -->
+
+  <div class="form-group col-md-4">
     <label for="quantity">Quantity</label>
-    <input class="form-control" type="text" name="quantity" id="quantity">
+    <input class="form-control" type="text" name="product[quantity]" id="quantity">
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
+    <label for="active">Active</label>
+    <input class="form-control" type="text" name="product[active]" id="active">
+  </div>
+
+  <div class="form-group col-md-4">
     <label for="costPrice">Cost Price</label>
-    <input class="form-control" type="text" name="costPrice" id="costPrice">
+    <input class="form-control" type="text" name="product[costPrice]" id="costPrice">
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label for="brand">Selling Price</label>
-    <input class="form-control" type="text" name="sellingPrice" id="sellingPrice">
+    <input class="form-control" type="text" name="product[sellingPrice]" id="sellingPrice">
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label for="imageUrl">Image Url</label>
-    <input class="form-control" type="text" name="imageUrl" id="imageUrl">
+    <input class="form-control" type="text" name="product[imageUrl]" id="imageUrl">
   </div>
 
-  <input class="btn btn-default" type="submit">
+  <div class="form-group col-md-4">
+    <!-- <input class="btn btn-primary" type="submit"> -->
+    <button type="submit" class="btn btn-primary col-md-12">Create Product</button>
+  </div>
+
 </form>

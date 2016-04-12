@@ -11,7 +11,7 @@ var ProductSchema = new mongoose.Schema({
     quantity:     {type: Number, required: true},
     active:       {type: Boolean, required: true},
     costPrice:    {type: Number, required: true},
-    previousCost: {type: Number, required: true},
+    previousCost: {type: Number},
     sellingPrice: {type: Number, required: true},
     created:      {type: Date, default: Date.now},
     updated:      {type: Date, default: Date.now},

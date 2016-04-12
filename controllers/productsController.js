@@ -18,10 +18,15 @@ function getAll(request, response) {
 }
 
 //POST /api/products
-function create(req, res) {
-    //var result = candy.create(req.body.name,req.body.color);
-    //res.status(200).json(result.value);
-    res.send('Create Product')
+function create(request, response) {
+  console.log('in POST');
+  console.log('body:',request.body);
+  var product = new Product(request.body.product);
+
+  product.save(err => {
+    if(err) return response.json({message: 'could not create product'})
+    response.redirect('/products')
+  })
 }
 
 //GET /new
@@ -36,25 +41,50 @@ function getById(req, res) {
     res.send('Get Product by id')
 }
 
-//PUT /api/products/:id
-function updateById(req, res) {
-  //var result = candy.update(req.params.id,req.body.name,req.body.color);
-  //res.status(200).json(result.value);
-    res.send('Update Product by id')
+function editProduct(req, res) {
+  var id = req.params.id;
+  Product.findById({_id: id}, function(error, product) {
+
+    if(error) res.json({message: 'Could not find product b/c:' + error});
+    console.log(id);
+    console.log(product);
+    res.render('products/edit', {product: product});
+  });
+
 }
 
-//DELETE /api/products/:id
-function deleteById(req, res) {
-  //var result = candy.destroy(req.params.id);
-  //res.status(200).json(result.value);
-    res.send('Delete Product by id')
+// ***************************************************
+//PUT /api/products/:id
+function updateProduct(req, res) {
+  var id = req.params.id;
+
+  Product.findByIdAndUpdate(id, { $set: req.body.product }, function (err, product) {
+   if(err) res.json({messsage: 'Could not update product b/c:' + err});
+
+   res.redirect('/products')
+  });
+
 }
+
+// ***********************************************
+//DELETE /api/products/:id
+function deleteProduct(req, res) {
+ var id = req.params.id;
+
+ Product.remove({_id: id}, function(err) {
+   if(err) res.json({message: 'Could not delete product b/c: ' + err});
+
+   res.redirect('/products')
+ });
+}
+
 
 module.exports = {
   getAll:       getAll,
   create:       create,
   newProduct:   newProduct,
+  editProduct:  editProduct,
   getById:      getById,
-  updateById:   updateById,
-  deleteById:    deleteById
+  updateProduct:   updateProduct,
+  deleteProduct:    deleteProduct
 }

@@ -35,8 +35,8 @@ router.route('/api/products')
 
 router.route('/api/products/:id')
     .get(productsController.getById)
-    .put(productsController.updateById)
-    .delete(productsController.deleteById)
+    .put(productsController.updateProduct)
+    .delete(productsController.deleteProduct)
 
 
 //=============== API Routes to Sales Controller ===========================
