@@ -6,9 +6,17 @@
   <div class="form-group col-md-4">
     <input type="text" class="form-control" name="customerEmail" placeholder="Customer's Email"/>
   </div>
-  <div class="form-group col-md-4">
-    <input type="text" class="form-control" name="itemList" placeholder="product"/>
-  </div>
+  <table id="newSalesTable">
+      <tr>
+        <td>Product SKU</td>
+        <td>Quantity</td>
+      </tr>
+      <tr>
+        <td><input type="text" name="sku"/></td>
+        <td><input type="text" name="qty"/></td>
+      </tr>
+  </table>
+  <div id="addNewSalesItem">Add another item</div>
   <div class="form-group col-md-4">
     <button type="submit" class="btn btn-primary col-md-12">Submit</button>
   </div>

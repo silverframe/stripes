@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var salesOrderItems = require('./salesOrderItems')
+var salesOrderItem = require('./salesOrderItem')
 
 var SalesOrderSchema = new Schema({
     orderNo:        { type: Number },
     customerName:   { type: String },
     customerEmail:  { type : String },
-    itemList:       [salesOrderItems.schema],
+    itemList:       [salesOrderItem.schema],
     createdDate:    { type: Date, default: Date.now },
     // itemList :     [
     //   {

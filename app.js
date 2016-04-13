@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(ejsLayouts);
 app.use(express.static(__dirname + '/public'));
+app.use(methodOverride('_method')); 
 
 //Tell express to use sessions
 app.use(session({
