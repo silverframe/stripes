@@ -23,8 +23,8 @@ function getAll(req, res) {
     //   })
     // })
     StockAdjustment.find().populate('user').exec(function(err, adjustments) {
-      console.log(adjustments)
       res.render('stocks/index', {adjustments: adjustments})
+      console.log(adjustments)
     })
 }
 
@@ -47,6 +47,8 @@ function create(req, res) {
           //  old way to do this if we didnt have let
           // (function(qtyChange){
           Product.findOne( {'sku': req.body.sku[i]}, function( err, product){
+            console.log("first console log")
+            console.log(product);
               var stockAdjustmentItem = new StockAdjustmentItem({
               // It seems like you can either throw in the entire product object or just the product id as a value for the product key and mongoose will only store the database
               product:  product,
@@ -63,6 +65,11 @@ function create(req, res) {
                     });
                   }
               });
+              // Changes quantity in the product database
+              product.quantity = product.quantity + parseInt(qtyChange)
+              product.save()
+
+
           })
           // })();
       }
@@ -77,6 +84,8 @@ function create(req, res) {
                 stockAdjustment.adjustmentList.push(item)
                 stockAdjustment.save();
             });
+            product.quantity = product.quantity + parseInt(qtyChange)
+            product.save()
         })
     }
 
