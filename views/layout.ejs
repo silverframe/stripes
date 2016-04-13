@@ -35,8 +35,9 @@
 
             <!--Only show if there is a logged in user-->
             <% if (currentUser) { %>
-              <li><a href="/sales">Sales</a></li>
               <li><a href="/products">Products</a></li>
+              <li><a href="/sales">Sales</a></li>
+              <li><a href="/stock_adjustment">Products</a></li>
               <li><a href="/logout">Logout</a></li>
               <li><a href="/secret">Secret page (only if authenticated)</a></li>
             <% } else { %>
