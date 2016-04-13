@@ -1,11 +1,16 @@
 <style>
 table, th, td {
-  padding: 5px 10px;
+  padding: 10px;
+}
+
+td {
+  padding: 5px;
 }
 
 a {
   text-align: right;
 }
+
 </style>
 <a class="btn btn-default" href="/sales/new" role="button">New Sales</a>
 <table class = "table-responsive">
@@ -19,8 +24,12 @@ a {
   <tr>
     <td><%= salesOrder.customerName %></td>
     <td><%= salesOrder.customerEmail %></td>
-    <td><%= salesOrder.itemList %></td>
-    <td><%= salesOrder.createdDate %></td>
+    <td>
+    <% salesOrder.itemList.forEach( function(item) { %>
+    <p><%= item.product.name %></p>
+    <% })%>
+    </td>
+    <td><%= salesOrder.createdDate.toDateString() %></td>
     <td>
       <a class = "btn btn-default" href= <%="/sales/"+ salesOrder._id %> >Edit Sale</a>
     </td>
