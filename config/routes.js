@@ -83,7 +83,6 @@ router.route('/stock_adjustment')
 router.route('/stock_adjustment/new')
     .get(stocksController.getNew)
 
-
 router.route('/stock_adjustment/:id')
     // only get request and no patch or delete request for inventory security
     // can consider allowing it later for certain users (supervisor)

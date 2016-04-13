@@ -3,13 +3,29 @@ var mongoose = require('mongoose');
 var Product = require('../models/product');
 var StockAdjustmentItem = require('../models/stockAdjustmentItem')
 var StockAdjustment = require('../models/stockAdjustment');
+var User = require('../models/user');
 // var StockAdjustmentItem = mongoose.model('StockAdjustmentItem');
 // var StockAdjustment = mongoose.model('StockAdjustment');
 
 function getAll(req, res) {
-    //var result = candy.all();
-    //res.status(200).json(result.value);
-    res.send('Get all Product stock levels')
+    // StockAdjustment.find( function(err, adjustments) {
+    //   // why is this not working
+    //   // if (err) {
+    //   //   var res = { message: err.message };
+    //   //   res.json(res);
+    //   //   return;
+    //   // }
+    //
+    //   console.log(adjustments);
+    //   res.render('stocks/index', {
+    //     adjustments: adjustments
+    //
+    //   })
+    // })
+    StockAdjustment.find().populate('user').exec(function(err, adjustments) {
+      console.log(adjustments)
+      res.render('stocks/index', {adjustments: adjustments})
+    })
 }
 
 function getNew(req, res) {
@@ -23,7 +39,7 @@ function create(req, res) {
     stockAdjustment.reason = req.body.reason;
     stockAdjustment.notes = req.body.notes;
     stockAdjustment.user = currentUser;
-    // need to create an if else statement
+    // body parser returns an array when there are more than one input fields with the sku name
     if ( Array.isArray(req.body.sku) ) {
       // Create stockAdjustmentItem before you can push it into stockAdjustment
       for (let i=0; i < req.body.sku.length; i++) {
@@ -42,6 +58,7 @@ function create(req, res) {
                   // console.log("inside: " + i)
                   if (i === (req.body.sku.length - 1) ) {
                     stockAdjustment.save( function(err, x){
+                      // this just reminds me that it is a callback
                       // console.log('stock save');
                     });
                   }
@@ -50,7 +67,7 @@ function create(req, res) {
           // })();
       }
     } else {
-        let qtyChange = req.body.qtyChange
+        var qtyChange = req.body.qtyChange
         Product.findOne( {'sku': req.body.sku}, function( err, product){
             var stockAdjustmentItem = new StockAdjustmentItem({
             product:  product,
@@ -71,10 +88,12 @@ function create(req, res) {
     })
 }
 
-//GET /api/stocks/:id
 function getById(req, res) {
-
-    res.send('Get stock level by product id??')
+    var id = req.params.id;
+    StockAdjustment.findById({_id: id}).populate('adjustmentList.product').populate('user').exec(function(error, adjustment) {
+      if(error) res.json({message: 'Could not find product b/c:' + error});
+      res.render('stocks/detailedView', {adjustment: adjustment});
+    });
 }
 
 //PUT /api/stocks/:id
