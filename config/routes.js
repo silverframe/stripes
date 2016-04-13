@@ -47,46 +47,46 @@ router.route('/logout')
 
 //=============== Routes to Products Controller ==========================
 router.route('/products')
-    .get(productsController.getAll)
-    .post(productsController.create)
+    .get(authenticatedUser, productsController.getAll)
+    .post(authenticatedUser, productsController.create)
 
 
 router.route('/products/new')
-    .get(productsController.newProduct)
+    .get(authenticatedUser, productsController.newProduct)
 
 router.route('/products/:id')
-    .get(productsController.editProduct)
-    .patch(productsController.updateProduct)
-    .delete(productsController.deleteProduct)
+    .get(authenticatedUser, productsController.editProduct)
+    .patch(authenticatedUser, productsController.updateProduct)
+    .delete(authenticatedUser, productsController.deleteProduct)
 
 //=============== Routes to Sales Controller ===========================
 
 router.route('/sales')
-  .get(salesController.getAll)
-  .post(salesController.createSale)
+  .get(authenticatedUser, salesController.getAll)
+  .post(authenticatedUser, salesController.createSale)
 
 router.route('/sales/new')
-  .get(salesController.getNew)
+  .get(authenticatedUser, salesController.getNew)
 
 
 router.route('/sales/:id')
-  .get(salesController.getSale)
-  .patch(salesController.updateSale)
-  .delete(salesController.removeSale)
+  .get(authenticatedUser, salesController.getSale)
+  .patch(authenticatedUser, salesController.updateSale)
+  .delete(authenticatedUser, salesController.removeSale)
 
 
 //=============== Routes to Stocks Controller ==========================
 router.route('/stock_adjustment')
-    .get(stocksController.getAll)
-    .post(stocksController.create)
+    .get(authenticatedUser, stocksController.getAll)
+    .post(authenticatedUser, stocksController.create)
 
 router.route('/stock_adjustment/new')
-    .get(stocksController.getNew)
+    .get(authenticatedUser, stocksController.getNew)
 
 router.route('/stock_adjustment/:id')
     // only get request and no patch or delete request for inventory security
     // can consider allowing it later for certain users (supervisor)
-    .get(stocksController.getById)
+    .get(authenticatedUser, stocksController.getById)
 
 
 
