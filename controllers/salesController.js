@@ -6,23 +6,28 @@ var SalesOrder = require('../models/salesOrder');
 var User = require('../models/user');
 
 // GET
-function getAll(request, response) {
-    SalesOrder.find((error, sales) => {
-        console.log(sales);
+function getAll(req, res) {
+    // SalesOrder.find((error, sales) => {
+    //     console.log(sales);
+    //
+    //     if (error) {
+    //         var res = {
+    //             message: 'Sale not found'
+    //         };
+    //         response.json(res);
+    //         return;
+    //     }
+    //     // response.json(sales);
+    //     response.render('sales/index', {
+    //         sales: sales
+    //     });
+    //
+    // });
+    SalesOrder.find().populate('itemList.product').exec(function(err, sales) {
+      res.render('sales/index', {sales: sales})
+      console.log(sales)
+})
 
-        if (error) {
-            var res = {
-                message: 'Sale not found'
-            };
-            response.json(res);
-            return;
-        }
-        // response.json(sales);
-        response.render('sales/index', {
-            sales: sales
-        });
-
-    });
 }
 
 function getNew(req, res) {
@@ -36,21 +41,25 @@ function createSale(req, res) {
     sale.customerName = req.body.customerName;
     sale.customerEmail = req.body.customerEmail;
     if (Array.isArray(req.body.sku)) {
-      for (let i=0; i < req.body.sku.length; i++) {
-      let qty = req.body.qty[i]
-      Product.findOne({'sku': req.body.sku[i]}, function(err, product){
-        var salesOrderItem = new SalesOrderItem({
-          product: product,
-          qty: qty
-        });
-        salesOrderItem.save(function(err, item){
-          sale.itemList.push(item)
-          if(i === (req.body.sku.length-1)){
-            sale.save();
-          }
-        })
-      })
-      }
+        for (let i = 0; i < req.body.sku.length; i++) {
+            let qty = req.body.qty[i]
+            Product.findOne({
+                'sku': req.body.sku[i]
+            }, function(err, product) {
+                var salesOrderItem = new SalesOrderItem({
+                    product: product,
+                    qty: qty
+                });
+                salesOrderItem.save(function(err, item) {
+                    sale.itemList.push(item)
+                    if (i === (req.body.sku.length - 1)) {
+                        sale.save();
+                    }
+                })
+                product.quantity = product.quantity - parseInt(qty)
+                product.save()
+            })
+        }
     } else {
         var qty = req.body.qty
         Product.findOne({
@@ -64,6 +73,8 @@ function createSale(req, res) {
                 sale.itemList.push(item)
                 sale.save();
             });
+            product.quantity = product.quantity - parseInt(qty)
+            product.save()
         })
     }
     sale.save(function(err) {
@@ -78,17 +89,23 @@ function createSale(req, res) {
 function getSale(request, response) {
     var id = request.params.id;
 
-    SalesOrder.findById({
-        _id: id
-    }, function(error, salesOrder) {
-        if (error) response.json({
-            message: 'Could not find sale b/c:' + error
-        });
-        response.render('sales/show', {
-            salesOrder: salesOrder
-        });
-    });
+    // SalesOrder.findById({
+    //     _id: id
+    // }, function(error, salesOrder) {
+    //     if (error) response.json({
+    //         message: 'Could not find sale b/c:' + error
+    //     });
+    //     response.render('sales/show', {
+    //         salesOrder: salesOrder
+    //     });
+    // });
+
+      SalesOrder.findById({_id: id}).populate('itemList.product').exec(function(error, sale) {
+        if(error) res.json({message: 'Could not find product b/c:' + error});
+        res.render('sales/index', {sales: sales});
+      });
 }
+
 
 function updateSale(request, response) {
     var id = request.params.id;
