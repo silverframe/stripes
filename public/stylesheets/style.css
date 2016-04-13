@@ -4,10 +4,11 @@ body {
   font-family: Verdana, Tahoma, Geneva, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
   background: #81e7db;
+  padding: 0 10px;
 }
 
 h1 {
