@@ -35,6 +35,8 @@ function getProducts(){
 }
 
 function addProduct(product) {
+    var image = $("<img>").attr("src", product.imageUrl).attr("height", "70");
+    var imageUrl = $("<td>").html(image);
     var sku = $("<td>").html(product.sku);
     var name = $("<td>").html(product.name);
     var productType = $("<td>").html(product.productType);
@@ -45,7 +47,7 @@ function addProduct(product) {
     var orderQty = $("<td><input type='number' name='quantity' min='1' max='10'></td>");
     var orderBtn = $("<td><button type='submit' class='btn btn-danger col-md-12'>Buy</button></td>")
     var form = $()
-    var row = $("<tr></tr>").append(sku).append(name).append(productType)
+    var row = $("<tr></tr>").append(imageUrl).append(sku).append(name).append(productType)
         .append(brand).append(quantity).append(sellingPrice).append(active).append(orderQty).append(orderBtn);
   $("table#products").append(row)
 
