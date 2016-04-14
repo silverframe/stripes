@@ -1,3 +1,24 @@
+<style>
+  h1, table, th, td {
+  /*border: 2px solid black;*/
+  padding: 5px 10px;
+  }
+
+  .btn {
+    margin-top: 30px;
+  }
+  h1 {
+    font-family: "Oxygen", sans-serif;
+    font-weight: 700;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  .box {
+    height: 100px;
+    width: 500px;
+    border: 1px solid rgb(223, 228, 226);
+  }
+</style>
 <div>
   <span>Reason: </span>
   <span><%= adjustment.reason %></span>
@@ -27,5 +48,5 @@
 </table>
   <div>
     <span>Notes</span>
-    <div>put a big box here</div>
+    <div class="box"></div>
   </div>

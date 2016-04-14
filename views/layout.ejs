@@ -137,24 +137,27 @@
   </head>
 
 <body>
+<% if (currentUser) { %>
+<% } else { %>
+  <nav class="navbar">
+      <div class="container">
+          <!-- <div class="navbar-header "> -->
+              <a class="navbar-brand" href="/">TradePanda</a>
+          <!-- </div> -->
+          <div class="collapse navbar-collapse" id="user-menu">
+              <ul class="nav navbar-nav navbar-right ">
+                  <% if (currentUser) { %>
+                      <li><a href="/logout">Logout</a></li>
+                      <% } else { %>
+                          <li><a href="/login">Login</a></li>
+                          <li><a href="/signup">Signup</a></li>
+                          <% } %>
+              </ul>
+          </div>
+      </div>
+  </nav>
+<% } %>
 
-    <nav class="navbar">
-        <div class="container">
-            <!-- <div class="navbar-header "> -->
-                <a class="navbar-brand" href="/">TradePanda</a>
-            <!-- </div> -->
-            <div class="collapse navbar-collapse" id="user-menu">
-                <ul class="nav navbar-nav navbar-right ">
-                    <% if (currentUser) { %>
-                        <li><a href="/logout">Logout</a></li>
-                        <% } else { %>
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/signup">Signup</a></li>
-                            <% } %>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <% if (currentUser) { %>
         <div class="wrapper container-fluid">
             <div class="row">
@@ -165,13 +168,15 @@
                         <li><a href="/products"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  Products</a></li>
                         <li><a href="/sales"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  Sales</a></li>
                         <li><a href="/stock_adjustment"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Stock Adjustments</a></li>
-                        <li><a href="/token"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Token </a></li>
+                        <li><a href="/token"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>  Token </a></li>
+                        <li><a href="/logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>  Logout </a></li>
                     </ul>
                 </div>
 
                 <div id="page-content-wrapper" class="col-md-10">
                     <div>
                         <!-- <a href="#" class= "btn btn-success" id="toggle-menu">Toggle Menu</a> -->
+                        
                         <%- body %>
                     </div>
                 </div>
@@ -193,7 +198,7 @@
             </div>
         <% } %>
 
-      
+
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="/javascripts/stockScript.js"></script>
