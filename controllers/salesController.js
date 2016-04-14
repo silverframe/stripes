@@ -41,21 +41,31 @@ function createSale(req, res) {
     sale.customerEmail = req.body.customerEmail;
     if (Array.isArray(req.body.sku)) {
         for (let i = 0; i < req.body.sku.length; i++) {
+            console.log("start of array:" + i)
             let qty = req.body.qty[i]
-            Product.findOne({
+            Product.findOne(
+            {
                 'sku': req.body.sku[i]
             }, function(err, product) {
+              console.log("found product:" + i)
                 var salesOrderItem = new SalesOrderItem({
                     product: product,
                     qty: qty
                 });
                 salesOrderItem.save(function(err, item) {
+                  console.log("saved product:" + i)
+
                     sale.itemList.push(item)
                     if (i === (req.body.sku.length - 1)) {
-                        sale.save();
+                      
+                      console.log("Saved all the entire list of products:" + i)
+                        sale.save( function(err,x) {
+                          // reminds us its a fkin callback
+                        });
                     }
                 })
                 product.quantity = product.quantity - parseInt(qty)
+                console.log("Products have been saved")
                 product.save()
             })
         }

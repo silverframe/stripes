@@ -5,12 +5,19 @@
     td {
         /*border: 2px solid black;*/
         padding: 5px 10px;
+        font-family: "Oxygen", sans-serif;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-weight: 700;
     }
 
     #create {
-      margin-top: 10px;
+      margin-top: 30px;
       align-content: flex-end;
     }
+
 </style>
 <h1>Product Details</h1>
 <div class="container">
@@ -56,11 +63,11 @@
                         <%= product.active %>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href=<%= "/products/" + product._id %> >Edit Product</a>
+                        <a class="btn btn-default" href=<%= "/products/" + product._id %> >Edit Product</a>
                     </td>
                     <td>
                         <form method="POST" action=<%="/products/" + product._id + "?_method=DELETE" %> >
-                            <button type="submit" class="btn btn-danger col-md-12">Delete Product</button>
+                            <button type="submit" class="btn btn-primary col-md-12">Delete Product</button>
                         </form>
                     </td>
                 </tr>
