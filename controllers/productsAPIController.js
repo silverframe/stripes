@@ -14,7 +14,7 @@ function getAll(request, response) {
   if (request.user.webURL === request.hostname ) {
     //TODO: Please filter away all inactive products before return json
 
-    Product.find( (error, products) => {
+    Product.find({'organization': request.user.organization }, (error, products) => {
       if (error) {
         var res = {
           message: 'Product Not Found'

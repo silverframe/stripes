@@ -85,7 +85,8 @@ function getTokenWithEmail(req, res) {
 
     var tokenInfo = {
       id: user._id,
-      webURL: user.local.webURL
+      webURL: user.local.webURL,
+      organization: user.local.organization
     };
 
     var token = jwt.sign(tokenInfo, secretValue);

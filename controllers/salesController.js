@@ -1,5 +1,5 @@
 'use strict'
-
+var mongoose = require('mongoose');
 var Product = require('../models/product');
 var SalesOrderItem = require('../models/salesOrderItem')
 var SalesOrder = require('../models/salesOrder');
@@ -23,7 +23,7 @@ function getAll(req, res) {
     //     });
     //
     // });
-    SalesOrder.find().populate('itemList.product').exec(function(err, sales) {
+    SalesOrder.find({'organization': currentUser.local.organization}).populate('itemList.product').exec(function(err, sales) {
       res.render('sales/index', {sales: sales})
 })
 
@@ -39,13 +39,16 @@ function createSale(req, res) {
     var sale = new SalesOrder();
     sale.customerName = req.body.customerName;
     sale.customerEmail = req.body.customerEmail;
+    sale.user = currentUser;
+    sale.organization = currentUser.local.organization;
     if (Array.isArray(req.body.sku)) {
         for (let i = 0; i < req.body.sku.length; i++) {
             console.log("start of array:" + i)
             let qty = req.body.qty[i]
             Product.findOne(
             {
-                'sku': req.body.sku[i]
+                'sku': req.body.sku[i],
+                'organization': currentUser.local.organization
             }, function(err, product) {
               console.log("found product:" + i)
                 var salesOrderItem = new SalesOrderItem({
@@ -57,7 +60,7 @@ function createSale(req, res) {
 
                     sale.itemList.push(item)
                     if (i === (req.body.sku.length - 1)) {
-                      
+
                       console.log("Saved all the entire list of products:" + i)
                         sale.save( function(err,x) {
                           // reminds us its a fkin callback
@@ -72,7 +75,8 @@ function createSale(req, res) {
     } else {
         var qty = req.body.qty
         Product.findOne({
-            'sku': req.body.sku
+            'sku': req.body.sku,
+            'organization': currentUser.local.organization
         }, function(err, product) {
             var salesOrderItem = new SalesOrderItem({
                 product: product,
