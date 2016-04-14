@@ -1,63 +1,185 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Authentication with Passport and Express</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <style>
-    .container {
-      font-family: 'Oxygen', sans-serif;
-    }
+
     .navbar-header {
       font-weight: 700;
     }
     .tokenDisplay {
       word-wrap: break-word;
     }
+	.container {
+      font-family: 'Oxygen', sans-serif;
+    }
+
+        #sidebar-wrapper {
+            /*z-index: 1;
+          width: 250px;
+          overflow-y: hidden;*/
+            background: #00293C;
+            opacity: 0.9;
+            min-height: 100%;
+            height: 100vh;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .row {
+            height: 100%;
+        }
+
+        #page-content-wrapper {
+            /*width: 100%;*/
+            padding: 15px;
+            float: left;
+            height: 90vh;
+            background: #FDffff;
+        }
+
+        #wrapper {
+            background: #F1F1F2;
+        }
+
+        #wrapper.menuDisplayed #sidebar-wrapper {
+            width: 250px;
+        }
+
+        #wrapper.menuDisplayed #page-content-wrapper {
+            padding-left: 250px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-nav li {
+            text-indent: 15px;
+            line-height: 40px;
+        }
+
+        .sidebar-nav li a {
+            display: block;
+            text-decoration: none;
+            font-family: 'Oxygen', sans-serif;
+            font-weight: 700;
+            color: rgb(202, 212, 228);
+        }
+
+        .sidebar-nav li:first-child {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .sidebar-nav li a:hover {
+            background: rgb(14, 38, 54);
+        }
+
+        .navbar {
+            margin-bottom: 0px;
+            /*background: rgb(7, 64, 88);*/
+            background: rgb(3, 35, 47);
+            color: rgb(242, 242, 242);
+        }
+
+        .navbar a {
+            color: rgb(242, 242, 242);
+            font-weight: 700;
+        }
+
+        hr {
+            border: none;
+        }
+
+        table {
+            /*border-bottom: 1px solid gray;*/
+            padding: 5px 10px;
+        }
+
+        tr,
+        th,
+        td {
+            border-bottom: 1px solid gray;
+            padding: 5px 10px;
+        }
+
     </style>
   </head>
-  <body>
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="glyphicon glyphicon-eye-open"></span>
-          </button> -->
-          <a class="navbar-brand" href="/">Pi Shop</a>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header ">
+                <a class="navbar-brand" href="/">Pi Shop</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="user-menu">
+                <ul class="nav navbar-nav navbar-right ">
+
+
+                    <!-- Only show if there is a logged in user-->
+                    <% if (currentUser) { %>
+                        <!-- <li><a href="/products">Products</a></li>
+                        <li><a href="/sales">Sales</a></li>
+                        <li><a href="/stock_adjustment">stock Adjustment</a></li> -->
+                        <li><a href="/logout">Logout</a></li>
+                        <!-- <li><a href="/secret">Secret page</a></li> -->
+                        <% } else { %>
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/signup">Signup</a></li>
+                            <% } %>
+                </ul>
+            </div>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="user-menu">
-          <ul class="nav navbar-nav navbar-right">
-
-
-            <!--Only show if there is a logged in user-->
-            <% if (currentUser) { %>
-              <li><a href="/products">Products</a></li>
-              <li><a href="/sales">Sales</a></li>
-              <li><a href="/stock_adjustment">Stock Adjustment</a></li>
-              <li><a href="/token">Token</a></li>
-              <li><a href="/logout">Logout</a></li>
-              <li><a href="/secret">Secret page (only if authenticated)</a></li>
-            <% } else { %>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/signup">Signup</a></li>
-            <% } %>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
     </nav>
+    <% if (currentUser) { %>
+        <div class="wrapper container-fluid">
+            <div class="row">
+                <div id="sidebar-wrapper" class="col-md-2">
+                    <ul class="sidebar-nav">
+                        <li><a href="/"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span> Apple Pi</a></li>
+                        <li><a href="/"><span class="glyphicon glyphicon-scale" aria-hidden="true"></span> Dashboard</a></li>
+                        <li><a href="/products"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Products</a></li>
+                        <li><a href="/sales"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Sales</a></li>
+                        <li><a href="/stock_adjustment"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Stock Adjustment</a></li>
+                    </ul>
+                </div>
 
-    <main class="container">
-      <%- body %>
-    </main>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="/javascripts/stockScript.js"></script>
-    <script src="/javascripts/salesScript.js"></script>
-    <script src="/javascripts/tokenScript.js"></script>
-  </body>
+                <div id="page-content-wrapper" class="col-md-10">
+                    <div>
+                        <!-- <a href="#" class= "btn btn-success" id="toggle-menu">Toggle Menu</a> -->
+                        <%- body %>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <% } else { %>
+            <div class="wrapper container">
+                <div class="row">
+
+                    <div id="page-content-wrappert" class="col-md-12">
+                        <div>
+                            <!-- <a href="#" class= "btn btn-success" id="toggle-menu">Toggle Menu</a> -->
+                            <%- body %>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <% } %>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="/javascripts/stockScript.js"></script>
+<script src="/javascripts/salesScript.js"></script>
+<script src="/javascripts/tokenScript.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+
 </html>
