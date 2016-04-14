@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Authentication with Passport and Express</title>
+    <title>Apple Pi</title>
     <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <style>
-
+    .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+      margin-left: -90px;
+      font-size: 20px;
+    }
 
     .navbar-header {
       font-weight: 700;
@@ -37,7 +40,8 @@
 
         #page-content-wrapper {
             /*width: 100%;*/
-            padding: 15px;
+            padding-top: 20px;
+            padding-left: 50px;
             float: left;
             height: 90vh;
             background: #FDffff;
@@ -73,10 +77,14 @@
             color: rgb(202, 212, 228);
         }
 
-        /*.sidebar-nav li:first-child {
-            font-weight: 700;
-            font-size: 13px;
-        }*/
+        .navbar-nav>li>a:hover {
+          color: rgb(6, 163, 179);
+          background: rgb(3, 35, 47);
+        }
+
+        .sidebar-nav li:first-child {
+            padding-top: 10px;
+        }
 
         .sidebar-nav li a:hover {
             background: rgb(11, 29, 41);
@@ -88,6 +96,8 @@
             /*background: rgb(7, 64, 88);*/
             background: rgb(3, 35, 47);
             color: rgb(242, 242, 242);
+            margin-bottom: -10px;
+            border-radius: 0px !important;
         }
 
         .navbar a {
@@ -102,17 +112,24 @@
         table {
             /*border-bottom: 1px solid gray;*/
             padding: 5px 10px;
+            padding-top: 30px;
+            font-family: 'Oxygen', sans-serif;
         }
 
         tr,
         th,
         td {
-            border-bottom: 1px solid gray;
-            padding: 5px 10px;
+            border-bottom: 1px solid rgb(223, 228, 226);
+            padding: 5px;
         }
 
         span {
           padding-right: 10px;
+        }
+
+        th {
+          color: rgb(146, 139, 147);
+          padding-bottom: 20px;
         }
 
     </style>
@@ -123,20 +140,13 @@
 
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header ">
+            <!-- <div class="navbar-header "> -->
                 <a class="navbar-brand" href="/">TradePanda</a>
-            </div>
-
+            <!-- </div> -->
             <div class="collapse navbar-collapse" id="user-menu">
                 <ul class="nav navbar-nav navbar-right ">
-
-                    <!-- Only show if there is a logged in user-->
                     <% if (currentUser) { %>
-                        <!-- <li><a href="/products">Products</a></li>
-                        <li><a href="/sales">Sales</a></li>
-                        <li><a href="/stock_adjustment">stock Adjustment</a></li> -->
                         <li><a href="/logout">Logout</a></li>
-                        <!-- <li><a href="/secret">Secret page</a></li> -->
                         <% } else { %>
                             <li><a href="/login">Login</a></li>
                             <li><a href="/signup">Signup</a></li>
@@ -151,7 +161,7 @@
                 <div id="sidebar-wrapper" class="col-md-2">
                     <ul class="sidebar-nav">
                         <!-- <li><a href="/"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span>  APPLE PI</a></li> -->
-                        <li><a href="/"><span class="glyphicon glyphicon-scale" aria-hidden="true"></span>  Dashboard</a></li>
+                        <li><a href="/"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>  Dashboard</a></li>
                         <li><a href="/products"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  Products</a></li>
                         <li><a href="/sales"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  Sales</a></li>
                         <li><a href="/stock_adjustment"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Stock Adjustments</a></li>
