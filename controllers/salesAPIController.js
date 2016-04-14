@@ -33,45 +33,36 @@ function getNew(req, res) {
 // POST
 function createSale(req, res) {
     var sale = new SalesOrder();
+
+    //Get customerName and customerEmail from the body
     sale.customerName = req.body.customerName;
     sale.customerEmail = req.body.customerEmail;
-    if (Array.isArray(req.body.sku)) {
-      for (let i=0; i < req.body.sku.length; i++) {
-      let qty = req.body.qty[i]
-      Product.findOne({'sku': req.body.sku[i]}, function(err, product){
+
+    //Get the qty form the body
+    var qty = req.body.qty
+
+    //get sku from the body
+    Product.findOne({
+        'sku': req.body.sku
+    }, function(err, product) {
         var salesOrderItem = new SalesOrderItem({
-          product: product,
-          qty: qty
+            product: product,
+            qty: qty
         });
-        salesOrderItem.save(function(err, item){
-          sale.itemList.push(item)
-          if(i === (req.body.sku.length-1)){
+        salesOrderItem.save(function(err, item) {
+            sale.itemList.push(item)
             sale.save();
-          }
-        })
-      })
-      }
-    } else {
-        var qty = req.body.qty
-        Product.findOne({
-            'sku': req.body.sku
-        }, function(err, product) {
-            var salesOrderItem = new SalesOrderItem({
-                product: product,
-                qty: qty
-            });
-            salesOrderItem.save(function(err, item) {
-                sale.itemList.push(item)
-                sale.save();
-            });
-        })
-    }
-    sale.save(function(err) {
+        });
+        product.quantity = product.quantity - parseInt(qty)
+        product.save()
+    })
+
+    sale.save(function(err, sale) {
         if (err) return res.json({
             message: err.message
         });
-        // putting a return is equivalent to an else
-        res.redirect('/sales')
+
+        res.json(sale)
     })
 }
 // GET
