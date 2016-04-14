@@ -8,9 +8,18 @@ body {
   margin: 0 auto;
   text-align: left;
   background: #81e7db;
+  padding: 5px 5px;
+}
+table{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+  background: #81e7db;
   padding: 0 10px;
 }
-
 h1 {
   font-family: 'Sniglet', Helvetica, cursive;
   letter-spacing: -2px;
