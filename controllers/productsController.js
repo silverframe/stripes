@@ -4,7 +4,7 @@ var Product = require('../models/product');
 //GET /api/products
 function getAll(request, response) {
   console.log("test")
-  Product.find( (error, products) => {
+  Product.find((error, products) => {
     if (error) {
       var res = {
         message: 'Product Not Found'

@@ -1,32 +1,49 @@
 // jQuery
 $(document).ready(function(){
-  //$('form#new-doughnut').on('submit', sendOurDataViaAJAX)
-  getProducts();
+    //Create product listing table
+    getProducts();
 });
 
-//function sendOurDataViaAJAX(e){
-//  //stay on page
-//  e.preventDefault();
-//
-//   //our API uses JSON, so we need to make a javascript object! There are a lot of ways to do this, this just a basic example.
-//  var doughnut = {
-//    style: $('form#new-doughnut select#doughnut-style').val(),
-//    flavor: $('form#new-doughnut input#doughnut-flavor').val()
-//  };
-//
-//  // create a new AJAX request
-//  $.post('https://api.doughnuts.ga/doughnuts', doughnut)
-//    .done(function(data){
-//      //do this after successful post
-//      addDoughnut(data);
-//    });
-//
-//  // clear our input box!
-//  $('form#new-doughnut input#doughnut-flavor').val(null)
-//}
-//token in header
+function sendOurDataViaAJAX(e){
+    //stay on page
+    e.preventDefault();
+    let submittedForm = e.target;
+    console.log(submittedForm)
+
+   //Create a json object for posting to the create sale API
+    var salesOrder = {};
+    $.each($(submittedForm).serializeArray(), function(i, field) {
+        salesOrder[field.name] = field.value;
+    });
+
+    salesOrder['customerName'] = $('#customerName').val();
+    salesOrder['customerEmail'] = $('#customerEmail').val();
+    console.log(salesOrder)
+
+  // create a new AJAX request
+  $.post('http://localhost:4000/api/sales', salesOrder)
+    .done(function(){
+        //Do this after successful post
+        //Get the stock quantity of the row which the buy button was clicked
+        var stockQty = $(submittedForm).parent().children().eq(5);
+        stockQty.text(Number(stockQty.text()) - salesOrder['qty']);
+        console.log(stockQty);
+    });
+
+  // clear customer name, email text fields, and the order qty input boxes
+    $('input[type="number"]').val(null)
+    $(':text').val(null)
+}
+
+//Pull the product list from the api server. and loop through each product to create the row
+//Required to pass the token in the post request header
 function getProducts(){
-  var products = $.get('http://localhost:4000/api/products')
+  $.ajax({
+    // insert your token here
+    headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiSmFtZXMgQm9uZCIsImNvZGVuYW1lIjoiMDA3IiwiaWQiOiI1NzA1Y2ZmODY2NzFjZThkNDc5ZWRkNzYiLCJpYXQiOjE0NjA1NjI3MjR9.OkQi5-R5K62oBRELpxPNrVpoovaYd44P8cusANzZjHM'},
+    type: 'GET',
+    url: 'http://localhost:4000/api/products'
+  })
     .done(function(data){
       $.each(data, function(index, product){
         addProduct(product);
@@ -34,7 +51,10 @@ function getProducts(){
     });
 }
 
+//Generate the the table row for each product and append to the table
 function addProduct(product) {
+    var image = $("<img>").attr("src", product.imageUrl).attr("height", "70");
+    var imageUrl = $("<td>").html(image);
     var sku = $("<td>").html(product.sku);
     var name = $("<td>").html(product.name);
     var productType = $("<td>").html(product.productType);
@@ -42,12 +62,19 @@ function addProduct(product) {
     var quantity = $("<td>").html(product.quantity);
     var sellingPrice = $("<td>").html(product.sellingPrice);
     var active = $("<td>").html(product.active);
-    var orderQty = $("<td><input type='number' name='quantity' min='1' max='10'></td>");
-    var orderBtn = $("<td><button type='submit' class='btn btn-danger col-md-12'>Buy</button></td>")
-    var form = $()
-    var row = $("<tr></tr>").append(sku).append(name).append(productType)
-        .append(brand).append(quantity).append(sellingPrice).append(active).append(orderQty).append(orderBtn);
-  $("table#products").append(row)
 
+    //Create the submit form for the buy button
+    var skuHidden = $('<input>').attr({ type: 'hidden', name: 'sku', value: product.sku});
+    var orderQty = $("<input type='number' name='qty' min='1' max='10'>");
+    var orderBtn = $("<button type='submit' class='btn btn-danger col-md-12'>Buy</button>");
+    var form = $("<form class='item-form'>").append(skuHidden).append(orderQty).append(orderBtn)
+
+    //Populate the whole row and append the row to the table
+    var row = $("<tr></tr>").append(imageUrl).append(sku).append(name).append(productType)
+        .append(brand).append(quantity).append(sellingPrice).append(active).append(form);
+    $("table#products").append(row)
+
+    //Add listeners to the buy form created in that row. This can be done only after it is generated above
+    form.on('submit', sendOurDataViaAJAX)
 
 }

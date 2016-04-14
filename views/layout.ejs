@@ -7,6 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <style>
+
         .container {
             font-family: 'Oxygen', sans-serif;
         }
@@ -101,6 +102,7 @@
             border-bottom: 1px solid gray;
             padding: 5px 10px;
         }
+
     </style>
 </head>
 
@@ -137,6 +139,7 @@
         <div class="wrapper container-fluid">
             <div class="row">
 
+
                 <div id="sidebar-wrapper" class="col-md-2">
                     <ul class="sidebar-nav">
                         <li><a href="/"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span> Apple Pi</a></li>
@@ -169,6 +172,24 @@
 
                 </div>
             </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="user-menu">
+          <ul class="nav navbar-nav navbar-right">
+
+
+            <!--Only show if there is a logged in user-->
+            <% if (currentUser) { %>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/sales">Sales</a></li>
+              <li><a href="/stock_adjustment">Stock Adjustment</a></li>
+              <li><a href="/token">Token</a></li>
+              <li><a href="/logout">Logout</a></li>
+              <li><a href="/secret">Secret page (only if authenticated)</a></li>
+            <% } else { %>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/signup">Signup</a></li>
+
             <% } %>
                 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
                 <script src="/javascripts/stockScript.js"></script>

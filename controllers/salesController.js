@@ -25,7 +25,6 @@ function getAll(req, res) {
     // });
     SalesOrder.find().populate('itemList.product').exec(function(err, sales) {
       res.render('sales/index', {sales: sales})
-      console.log(sales)
 })
 
 }
@@ -86,8 +85,8 @@ function createSale(req, res) {
     })
 }
 // GET
-function getSale(request, response) {
-    var id = request.params.id;
+function getSale(req, res) {
+    var id = req.params.id;
 
     // SalesOrder.findById({
     //     _id: id
@@ -100,9 +99,9 @@ function getSale(request, response) {
     //     });
     // });
 
-      SalesOrder.findById({_id: id}).populate('itemList.product').exec(function(error, sale) {
+      SalesOrder.findById({_id: id}).populate('itemList.product').exec(function(error, salesOrder) {
         if(error) res.json({message: 'Could not find product b/c:' + error});
-        res.render('sales/index', {sales: sales});
+        res.render('sales/show', {salesOrder: salesOrder});
       });
 }
 
