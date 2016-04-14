@@ -122,9 +122,6 @@
                         <!-- <li><a href="/products">Products</a></li>
                         <li><a href="/sales">Sales</a></li>
                         <li><a href="/stock_adjustment">stock Adjustment</a></li> -->
-                        <li>
-                            <%= currentUser.name %>
-                        </li>
                         <li><a href="/logout">Logout</a></li>
                         <!-- <li><a href="/secret">Secret page</a></li> -->
                         <% } else { %>
@@ -138,8 +135,6 @@
     <% if (currentUser) { %>
         <div class="wrapper container-fluid">
             <div class="row">
-
-
                 <div id="sidebar-wrapper" class="col-md-2">
                     <ul class="sidebar-nav">
                         <li><a href="/"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span> Apple Pi</a></li>
@@ -172,30 +167,13 @@
 
                 </div>
             </div>
+        <% } %>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="user-menu">
-          <ul class="nav navbar-nav navbar-right">
-
-
-            <!--Only show if there is a logged in user-->
-            <% if (currentUser) { %>
-              <li><a href="/products">Products</a></li>
-              <li><a href="/sales">Sales</a></li>
-              <li><a href="/stock_adjustment">Stock Adjustment</a></li>
-              <li><a href="/token">Token</a></li>
-              <li><a href="/logout">Logout</a></li>
-              <li><a href="/secret">Secret page (only if authenticated)</a></li>
-            <% } else { %>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/signup">Signup</a></li>
-
-            <% } %>
-                <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-                <script src="/javascripts/stockScript.js"></script>
-                <script src="/javascripts/salesScript.js"></script>
-                <script src="/javascripts/tokenScript.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="/javascripts/stockScript.js"></script>
+<script src="/javascripts/salesScript.js"></script>
+<script src="/javascripts/tokenScript.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 
 </html>
