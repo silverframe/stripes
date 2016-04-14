@@ -5,9 +5,9 @@ $(document).ready(function(){
 });
 
 // For testing (Development)
-var serverUrl= "http://localhost:4000"
+//var serverUrl= "http://localhost:4000"
 // For Production
-// var serverUrl = "https://rocky-mountain-36442.herokuapp.com"
+ var serverUrl = "https://rocky-mountain-36442.herokuapp.com"
 
 function sendOurDataViaAJAX(e){
     //stay on page
