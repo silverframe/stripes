@@ -15,7 +15,10 @@ var ProductSchema = new mongoose.Schema({
     sellingPrice: {type: Number, required: true},
     created:      {type: Date, default: Date.now},
     updated:      {type: Date, default: Date.now},
-    imageUrl:     String
+    imageUrl:     String,
+    organization: {type: mongoose.Schema.ObjectId, ref: 'Organization', required: true},
+    user:         {type: mongoose.Schema.ObjectId, ref: 'User', required: true}
+
 });
 
 module.exports = mongoose.model('Product', ProductSchema);

@@ -6,11 +6,12 @@ var userSchema = mongoose.Schema({
     name         : String,
     email        : String,
     password     : String,
-    organization : String,
+    organization : {type: mongoose.Schema.ObjectId, ref: 'Organization', required: true},
     webURL       : String,
     role         : {type: String, enum: ['Supervisor', 'Sales', 'Store']}
   }
 });
+
 
 //userSchema.methods is to create a method that is accessible from instance.
 // userSchema.statics is to  create a method that is accesible from the class.

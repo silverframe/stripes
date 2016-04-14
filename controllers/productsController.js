@@ -4,7 +4,8 @@ var Product = require('../models/product');
 //GET /api/products
 function getAll(request, response) {
   console.log("test")
-  Product.find((error, products) => {
+  Product.find({'organization': currentUser.local.organization }, (error, products) => {
+
     if (error) {
       var res = {
         message: 'Product Not Found'
@@ -19,10 +20,11 @@ function getAll(request, response) {
 
 //POST /api/products
 function create(request, response) {
-  console.log('in POST');
-  console.log('body:',request.body);
   var product = new Product(request.body.product);
-
+  //add in the organization id and user id
+  product.user = currentUser;
+  console.log(currentUser);
+  product.organization = currentUser.local.organization;
   product.save(err => {
     if(err) return response.json({message: 'could not create product'})
     response.redirect('/products')

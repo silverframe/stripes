@@ -4,6 +4,7 @@
 //import package for authentication
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
+var Organization = require('../models/organization');
 
 module.exports = function(passport){
 
@@ -36,14 +37,30 @@ module.exports = function(passport){
             //first parameter to done() is err so in the event there is no failure return null for the error parameter
             if (user) return done(null, false, req.flash('errorMessage', "this email is already taken!"));
 
-            var newUser = new User();
-            newUser.local.email  = email;
-            newUser.local.password = User.encrypt(password);
+            Organization.findOne({'name': req.body.organization_name}, function(err,organization){
+              if (err) return done(err);
+              if (organization) return done(null, false, req.flash('errorMessage', "this organization is already taken!"))
 
-            newUser.save(function(err, user){
-                if(err) return done(err);
-                return done(null, user);
+              var organization = new Organization();
+              organization.name = req.body.organization_name
+              organization.save(function(err, organization){
+                // error message for existing organization
+
+                var newUser = new User();
+                newUser.local.name = req.body.name;
+                newUser.local.email  = email;
+                newUser.local.password = User.encrypt(password);
+                newUser.local.organization = organization._id;
+
+                newUser.save(function(err, user){
+                    if(err) return done(err);
+                    return done(null, user);
+                })
+
+              })
+
             })
+
         })
     }));
 

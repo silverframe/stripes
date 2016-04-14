@@ -22,10 +22,10 @@ function getAll(req, res) {
     //
     //   })
     // })
-    StockAdjustment.find().populate('user').exec(function(err, adjustments) {
+    StockAdjustment.find({'organization': currentUser.local.organization}).populate('user').exec(function(err, adjustments) {
       res.render('stocks/index', {adjustments: adjustments})
       console.log(adjustments)
-    })
+    });
 }
 
 function getNew(req, res) {
@@ -39,6 +39,7 @@ function create(req, res) {
     stockAdjustment.reason = req.body.reason;
     stockAdjustment.notes = req.body.notes;
     stockAdjustment.user = currentUser;
+    stockAdjustment.organization = currentUser.local.organization;
     // body parser returns an array when there are more than one input fields with the sku name
     if ( Array.isArray(req.body.sku) ) {
       // Create stockAdjustmentItem before you can push it into stockAdjustment
@@ -46,7 +47,9 @@ function create(req, res) {
           let qtyChange = req.body.qtyChange[i]
           //  old way to do this if we didnt have let
           // (function(qtyChange){
-          Product.findOne( {'sku': req.body.sku[i]}, function( err, product){
+
+          Product.findOne( {'sku': req.body.sku[i], 'organization': currentUser.local.organization}, function( err, product){
+
             console.log("first console log")
             console.log(product);
               var stockAdjustmentItem = new StockAdjustmentItem({
@@ -69,13 +72,12 @@ function create(req, res) {
               product.quantity = product.quantity + parseInt(qtyChange)
               product.save()
 
-
           })
           // })();
       }
     } else {
         var qtyChange = req.body.qtyChange
-        Product.findOne( {'sku': req.body.sku}, function( err, product){
+        Product.findOne( {'sku': req.body.sku, 'organization': currentUser.local.organization}, function( err, product){
             var stockAdjustmentItem = new StockAdjustmentItem({
             product:  product,
             qtyChange:  qtyChange

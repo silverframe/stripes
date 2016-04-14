@@ -9,10 +9,10 @@ var StockAdjustmentItem = require('./stockAdjustmentItem')
 
 var StockAdjustmentSchema = new mongoose.Schema({
   reason:           { type: String, required: true},
-  user:        	  	{ type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  // adjustmentList:   [{ type: StockAdjustmentItem.schema, required: true} ],
   adjustmentList:   [StockAdjustmentItem.schema],
   notes: 		  	    String,
+  organization:     {type: mongoose.Schema.ObjectId, ref: 'Organization', required: true},
+  user:             {type: mongoose.Schema.ObjectId, ref: 'User', required: true},
   createdDate:      { type: Date, default: Date.now },
   updatedDate:      { type: Date, default: Date.now }
 });

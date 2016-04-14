@@ -7,13 +7,11 @@ var SalesOrderSchema = new Schema({
     customerName:   { type: String },
     customerEmail:  { type : String },
     itemList:       [salesOrderItem.schema],
-    createdDate:    { type: Date, default: Date.now },
-    // itemList :     [
-    //   {
-    //     product: {type: Schema.Types.ObjectId, ref: 'Product', required: true},
-    //     qty: Number
-    //   } ]
-
+    organization: {type: mongoose.Schema.ObjectId, ref: 'Organization'},
+    user:         {type: mongoose.Schema.ObjectId, ref: 'User'},
+    createdDate:    { type: Date, default: Date.now }
 });
+
+// add required back into org n user
 
 module.exports = mongoose.model('SalesOrder', SalesOrderSchema);
