@@ -23,7 +23,7 @@ td {
     <td><%= salesOrder.customerEmail %></td>
     <td>
     <% salesOrder.itemList.forEach( function(item) { %>
-    <p><%= item.product.name %></p>
+    <p><%= item.name %></p>
     <% })%>
     </td>
     <td><%= salesOrder.createdDate.toDateString() %></td>
