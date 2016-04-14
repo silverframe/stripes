@@ -56,7 +56,7 @@
                         <%= product.active %>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href=< %="/products/" + product._id %> >Edit Product</a>
+                        <a class="btn btn-primary" href=<%= "/products/" + product._id %> >Edit Product</a>
                     </td>
                     <td>
                         <form method="POST" action=<%="/products/" + product._id + "?_method=DELETE" %> >
