@@ -40,7 +40,7 @@ function sendOurDataViaAJAX(e){
 function getProducts(){
   $.ajax({
     // insert your token here
-    headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiSmFtZXMgQm9uZCIsImNvZGVuYW1lIjoiMDA3IiwiaWQiOiI1NzA1Y2ZmODY2NzFjZThkNDc5ZWRkNzYiLCJpYXQiOjE0NjA1NjI3MjR9.OkQi5-R5K62oBRELpxPNrVpoovaYd44P8cusANzZjHM'},
+    headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU3MGYyZmZjYTljZjdiNzU2NDAxZWZmMiIsIndlYlVSTCI6ImhlbGxvLmNvbSIsImlhdCI6MTQ2MDYxNjUwNH0.RMnHd0IlXl1OCPc6OVKf_zss4moJC2dpkC6_oYvSyK4"},
     type: 'GET',
     url: 'http://localhost:4000/api/products'
   })

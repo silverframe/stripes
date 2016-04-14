@@ -2,6 +2,24 @@ var Product = require('../models/product');
 
 //GET /api/products
 function getAll(request, response) {
+// ============================== JWT MiddleWare ========================
+
+// fun fact: if you console.log a string and concatenate it with the user -> you wont be able to inspect the full object
+// JWT middleware decodes the token and adds the token info into request as user property
+// console.log("THIS CONSOLE LOG: " + request.user)
+  console.log("LOOK HERE")
+  console.log(request.user)
+  console.log(request.hostname)
+  // if request of website url is not equal to what user saved it as do not allow.
+  if (request.user === request.hostname ) {
+    console.log("it works")
+
+  } else {
+    console.log("keep trying")
+    // ask him to bugger off
+  }
+
+// ============================== End of JWT MiddleWare =================
 
   //TODO: Please filter away all inactive products before return json
 
