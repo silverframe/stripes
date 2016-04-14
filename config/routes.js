@@ -88,7 +88,7 @@ router.route('/stock_adjustment/:id')
 //=============== Routes to User =======================================
 router.route('/token')
   .get(authenticatedUser, usersController.getToken)
-
+  .post(authenticatedUser, usersController.getTokenWithEmail)
 //================ End of Routes =======================================
 
 

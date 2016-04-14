@@ -16,9 +16,7 @@ var methodOverride = require('method-override');
 var databaseURL = 'mongodb://localhost/stripes-db-ver1'
 mongoose.connect(databaseURL);
 
-//Used for encrypting our json web token
-//unique for each webb application
-var secretValue = "onhermajestyssecretservice";
+
 
 // Setup middleware
 app.use(morgan('dev'));
@@ -28,6 +26,9 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+//Used for encrypting our json web token
+//unique for each webb application
+var secretValue = "onhermajestyssecretservice";
 // Middleware for API routes JWT Token
 app.use('/api/products', expressJWT({secret: secretValue}));
 
