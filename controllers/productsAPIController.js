@@ -16,6 +16,7 @@ function getAll(request, response) {
 
   } else {
     console.log("keep trying")
+    response.json({"message":"You do not have access to the data"})
     // ask him to bugger off
   }
 
