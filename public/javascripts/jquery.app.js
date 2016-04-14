@@ -21,7 +21,7 @@ function sendOurDataViaAJAX(e){
     console.log(salesOrder)
 
   // create a new AJAX request
-  $.post('http://localhost:4000/api/sales', salesOrder)
+  $.post('https://rocky-mountain-36442.herokuapp.com/api/sales', salesOrder)
     .done(function(){
         //Do this after successful post
         //Get the stock quantity of the row which the buy button was clicked
@@ -42,7 +42,7 @@ function getProducts(){
     // insert your token here
     headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU3MGYyZmZjYTljZjdiNzU2NDAxZWZmMiIsIndlYlVSTCI6ImhlbGxvLmNvbSIsImlhdCI6MTQ2MDYxNjUwNH0.RMnHd0IlXl1OCPc6OVKf_zss4moJC2dpkC6_oYvSyK4"},
     type: 'GET',
-    url: 'http://localhost:4000/api/products'
+    url: 'https://rocky-mountain-36442.herokuapp.com/api/products'
   })
     .done(function(data){
       $.each(data, function(index, product){

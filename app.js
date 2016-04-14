@@ -13,7 +13,7 @@ var session        = require('express-session');
 var methodOverride = require('method-override');
 
 // Setup database
-var databaseURL = 'mongodb://localhost/stripes-db-ver1'
+var databaseURL = process.env.MONGODB_URI || 'mongodb://localhost/stripes-db-ver1';
 mongoose.connect(databaseURL);
 
 
@@ -87,4 +87,4 @@ var apiRoutes = require(__dirname + "/config/apiRoutes");
 app.use(routes)
 app.use(apiRoutes);
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);

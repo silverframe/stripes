@@ -1,46 +1,73 @@
-<h1>EShop</h1>
+<style>
+    h1,
+    table,
+    th,
+    td {
+        /*border: 2px solid black;*/
+        padding: 5px 10px;
+    }
+
+    #create {
+      margin-top: 10px;
+      align-content: flex-end;
+    }
+</style>
+<h1>Product Details</h1>
 <div class="container">
-  <div class="row">
-    <style>
-      h1, table, th, td {
-      /*border: 2px solid black;*/
-      padding: 5px 10px;
-      }
-    </style>
+    <div class="row">
 
-    <a href="/products/new" class="btn btn-default" >Create Product</a>
 
-    <table>
-    <tr>
-      <th>SKU</th>
-      <th>Name</th>
-      <th>Product Type</th>
-      <th>Brand</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Active</th>
-      <th>Action</th>
-    </tr>
-    <% products.forEach( product => { %>
-    <tr>
-      <td><%= product.sku %></td>
-      <td><%= product.name %></td>
-      <td><%= product.productType %></td>
-      <td><%= product.brand %></td>
-      <td><%= product.quantity %></td>
-      <td><%= product.sellingPrice %></td>
-      <td><%= product.active %></td>
-      <td>
-        <a class="btn btn-primary" href= <%= "/products/" + product._id %> >Edit Product</a>
-      </td>
-      <td>
-        <form method="POST" action=<%= "/products/" + product._id + "?_method=DELETE" %> >
-          <button type="submit" class="btn btn-danger col-md-12">Delete Product</button>
-        </form>
-      </td>
-    </tr>
-    <% } ) %>
-    </table>
-  </div>
+        <table>
+            <tr>
+                <th>SKU</th>
+                <th>Name</th>
+                <th>Product Type</th>
+                <th>Brand</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Active</th>
+                <th>Action</th>
+                <th>
+
+                </th>
+
+            </tr>
+            <% products.forEach( product => { %>
+                <tr>
+                    <td>
+                        <%= product.sku %>
+                    </td>
+                    <td>
+                        <%= product.name %>
+                    </td>
+                    <td>
+                        <%= product.productType %>
+                    </td>
+                    <td>
+                        <%= product.brand %>
+                    </td>
+                    <td>
+                        <%= product.quantity %>
+                    </td>
+                    <td>
+                        <%= product.sellingPrice %>
+                    </td>
+                    <td>
+                        <%= product.active %>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href=<%= "/products/" + product._id %> >Edit Product</a>
+                    </td>
+                    <td>
+                        <form method="POST" action=<%="/products/" + product._id + "?_method=DELETE" %> >
+                            <button type="submit" class="btn btn-danger col-md-12">Delete Product</button>
+                        </form>
+                    </td>
+                </tr>
+                <% } ) %>
+        </table>
+        <a href="/products/new" id="create" class="btn btn-default">Create Product</a>
+
+    </div>
 </div>
 <hr>

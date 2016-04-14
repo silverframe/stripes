@@ -7,9 +7,6 @@ td {
   padding: 5px;
 }
 
-a {
-  text-align: right;
-}
 
 </style>
 <a class="btn btn-default" href="/sales/new" role="button">New Sales</a>
@@ -26,7 +23,7 @@ a {
     <td><%= salesOrder.customerEmail %></td>
     <td>
     <% salesOrder.itemList.forEach( function(item) { %>
-    <p><%= item.product.name %></p>
+    <p><%= item.name %></p>
     <% })%>
     </td>
     <td><%= salesOrder.createdDate.toDateString() %></td>
