@@ -87,4 +87,4 @@ var apiRoutes = require(__dirname + "/config/apiRoutes");
 app.use(routes)
 app.use(apiRoutes);
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);
