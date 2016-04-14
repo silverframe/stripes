@@ -32,18 +32,21 @@ function getNew(req, res) {
 
 // POST
 function createSale(req, res) {
+  if (request.user.webURL === request.hostname ) {
     var sale = new SalesOrder();
 
     //Get customerName and customerEmail from the body
     sale.customerName = req.body.customerName;
     sale.customerEmail = req.body.customerEmail;
-
+    sale.user = request.user.id;
+    sale.organization = request.user.organization;
     //Get the qty form the body
     var qty = req.body.qty
 
     //get sku from the body
     Product.findOne({
-        'sku': req.body.sku
+        'sku': req.body.sku,
+        'organization': request.user.organization
     }, function(err, product) {
         var salesOrderItem = new SalesOrderItem({
             product: product,
@@ -64,6 +67,7 @@ function createSale(req, res) {
 
         res.json(sale)
     })
+  }
 }
 // GET
 function getSale(request, response) {
