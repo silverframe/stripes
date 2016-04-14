@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
 //unique for each webb application
 var secretValue = "onhermajestyssecretservice";
 // Middleware for API routes JWT Token
-//app.use('/api/products', expressJWT({secret: secretValue}));
+app.use('/api/products', expressJWT({secret: secretValue}));
 
 app.use(function(error, request, response, next) {
   // Check type of error
