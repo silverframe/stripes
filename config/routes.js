@@ -6,7 +6,6 @@ var bodyParser = require('body-parser'); //parses information from POST
 var passport    = require("passport");
 var methodOverride = require('method-override'); //used to manipulate POST
 
-
 //Reference to individual controller files
 var staticsController   = require('../controllers/staticsController');
 var usersController     = require('../controllers/usersController');
@@ -68,12 +67,10 @@ router.route('/sales')
 router.route('/sales/new')
   .get(authenticatedUser, salesController.getNew)
 
-
 router.route('/sales/:id')
   .get(authenticatedUser, salesController.getSale)
   .patch(authenticatedUser, salesController.updateSale)
   .delete(authenticatedUser, salesController.removeSale)
-
 
 //=============== Routes to Stocks Controller ==========================
 router.route('/stock_adjustment')
@@ -88,7 +85,9 @@ router.route('/stock_adjustment/:id')
     // can consider allowing it later for certain users (supervisor)
     .get(authenticatedUser, stocksController.getById)
 
-
+//=============== Routes to User =======================================
+router.route('/token')
+  .get(authenticatedUser, usersController.getToken)
 
 //================ End of Routes =======================================
 

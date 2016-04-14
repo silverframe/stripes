@@ -27,9 +27,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+// Middleware for API routes JWT Token
+app.use('/api/products', expressJWT({secret: secretValue}));
+
+app.use(function(error, request, response, next) {
+  // Check type of error
+  if ( error.name === "UnauthorizedError" ) {
+    // response.json({message: "Some token error"})
+    response.status(401).json( {message: "You do not have access to that classified information." });
+  } else {
+    response.json({message: "Some other error"})
+  }
+})
+
 app.use(ejsLayouts);
 app.use(express.static(__dirname + '/public'));
-app.use(methodOverride('_method')); 
+app.use(methodOverride('_method'));
 
 //Tell express to use sessions
 app.use(session({

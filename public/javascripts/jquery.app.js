@@ -25,9 +25,16 @@ $(document).ready(function(){
 //  $('form#new-doughnut input#doughnut-flavor').val(null)
 //}
 //token in header
+// if your token is in your webpage, won't everyone who downloads your code have access to your token
 function getProducts(){
-  var products = $.get('http://localhost:4000/api/products')
+  $.ajax({
+    // insert your token here
+    headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiSmFtZXMgQm9uZCIsImNvZGVuYW1lIjoiMDA3IiwiaWQiOiI1NzA1Y2ZmODY2NzFjZThkNDc5ZWRkNzYiLCJpYXQiOjE0NjA1NjI3MjR9.OkQi5-R5K62oBRELpxPNrVpoovaYd44P8cusANzZjHM'},
+    type: 'GET',
+    url: 'http://localhost:4000/api/products'
+  })
     .done(function(data){
+      console.log('hello world')
       $.each(data, function(index, product){
         addProduct(product);
       });

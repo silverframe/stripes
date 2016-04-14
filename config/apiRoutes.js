@@ -8,7 +8,7 @@ var passport    = require("passport");
 //Reference to individual controller files
 var productsAPIController  = require('../controllers/productsAPIController');
 var salesAPIController     = require('../controllers/salesAPIController');
-
+var authAPIController      = require('../controllers/authAPIController')
 
 function authenticatedUser(req, res, next){
     if (req.isAuthenticated()) return next();
@@ -42,7 +42,9 @@ router.route('/api/sales/:id')
 
 //=============== Routes for Json Web Token (To be implemented)=============
 
-
+// Removing it temporarily because we want user to sign in through our cms to get a token
+// router.route('/api/authorizations')
+//   .post(authAPIController.getToken)
 
 //================ End of Routes =======================================
 

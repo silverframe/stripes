@@ -1,6 +1,5 @@
 var Product = require('../models/product');
 
-
 //GET /api/products
 function getAll(request, response) {
 
