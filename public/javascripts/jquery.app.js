@@ -4,6 +4,11 @@ $(document).ready(function(){
     getProducts();
 });
 
+// For testing (Development)
+var serverUrl= "http://localhost:4000"
+// For Production
+// var serverUrl = "https://rocky-mountain-36442.herokuapp.com"
+
 function sendOurDataViaAJAX(e){
     //stay on page
     e.preventDefault();
@@ -21,7 +26,7 @@ function sendOurDataViaAJAX(e){
     console.log(salesOrder)
 
   // create a new AJAX request
-  $.post('https://rocky-mountain-36442.herokuapp.com/api/sales', salesOrder)
+  $.post(serverUrl + "/api/sales", salesOrder)
     .done(function(){
         //Do this after successful post
         //Get the stock quantity of the row which the buy button was clicked
@@ -40,9 +45,9 @@ function sendOurDataViaAJAX(e){
 function getProducts(){
   $.ajax({
     // insert your token here
-    headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU3MGYyZmZjYTljZjdiNzU2NDAxZWZmMiIsIndlYlVSTCI6ImhlbGxvLmNvbSIsImlhdCI6MTQ2MDYxNjUwNH0.RMnHd0IlXl1OCPc6OVKf_zss4moJC2dpkC6_oYvSyK4"},
+    headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU3MGYyZmZjYTljZjdiNzU2NDAxZWZmMiIsIndlYlVSTCI6ImxvY2FsaG9zdCIsImlhdCI6MTQ2MDYzMjQ4NX0.xYGjQP-q4yWuTF1e1cIuQm5MS1N8fSmHy0N03KriAFk"},
     type: 'GET',
-    url: 'https://rocky-mountain-36442.herokuapp.com/api/products'
+    url: serverUrl+'/api/products'
   })
     .done(function(data){
       $.each(data, function(index, product){
