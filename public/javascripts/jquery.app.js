@@ -7,7 +7,7 @@ $(document).ready(function(){
 // For testing (Development)
 //var serverUrl= "http://localhost:4000"
 // For Production
-var serverUrl = "https://agile-shore-23356.herokuapp.com/"
+var serverUrl = "https://agile-shore-23356.herokuapp.com"
 
 function sendOurDataViaAJAX(e){
     //stay on page
