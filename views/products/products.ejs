@@ -1,80 +1,45 @@
 <style>
-    h1,
-    table,
-    th,
-    td {
-        /*border: 2px solid black;*/
-        padding: 5px 10px;
-        font-family: "Oxygen", sans-serif;
-    }
-
-    h1 {
-      margin-bottom: 30px;
-      font-weight: 700;
-    }
-
-    #create {
-      margin-top: 30px;
-      align-content: flex-end;
-    }
 
 </style>
-<h1>Product Master List</h1>
-<div class="container">
-    <div class="row">
-
-
+<div class="page-content-section">
+    <div class="page-content-headerSection">
+        <div>
+            <h1 class="page-content-header">Inventory List</h1>
+        </div>
+        <div>
+            <a href="/products/new" class="btn btn-default createNewProduct">Add New Product</a>
+        </div>
+    </div>
+    <div class="tableContainer">
         <table>
             <tr>
-                <th>SKU</th>
-                <th>Name</th>
-                <th>Product Type</th>
-                <th>Brand</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Active</th>
-                <th>Action</th>
-                <th>
-
-                </th>
-
+                <th class="cs-tablehead">SKU</th>
+                <th class="cs-tablehead">Name</th>
+                <th class="cs-tablehead">Product Type</th>
+                <th class="cs-tablehead">Brand</th>
+                <th class="cs-tablehead">Quantity</th>
+                <th class="cs-tablehead">Price</th>
+                <th class="cs-tablehead">Active</th>
+                <th class="cs-tablehead">Action</th>
+                <th class="cs-tablehead"></th>
             </tr>
             <% products.forEach( product => { %>
                 <tr>
-                    <td>
-                        <%= product.sku %>
-                    </td>
-                    <td>
-                        <%= product.name %>
-                    </td>
-                    <td>
-                        <%= product.productType %>
-                    </td>
-                    <td>
-                        <%= product.brand %>
-                    </td>
-                    <td>
-                        <%= product.quantity %>
-                    </td>
-                    <td>
-                        <%= product.sellingPrice %>
-                    </td>
-                    <td>
-                        <%= product.active %>
-                    </td>
-                    <td>
-                        <a class="btn btn-default" href=<%= "/products/" + product._id %> >Edit Product</a>
-                    </td>
+                    <td class="cs-tabledata"><%= product.sku %></td>
+                    <td class="cs-tabledata"><%= product.name %></td>
+                    <td class="cs-tabledata"><%= product.productType %></td>
+                    <td class="cs-tabledata"><%= product.brand %></td>
+                    <td class="cs-tabledata"><%= product.quantity %></td>
+                    <td class="cs-tabledata"><%= product.sellingPrice %></td>
+                    <td class="cs-tabledata"><%= product.active %></td>
+                    <td class="cs-tabledata"><a class="editProduct" href=<%= "/products/" + product._id %> >Edit</a></td>
                     <td>
                         <form method="POST" action=<%="/products/" + product._id + "?_method=DELETE" %> >
-                            <button type="submit" class="btn btn-primary col-md-12">Delete Product</button>
+                            <a type="submit" class="deleteProduct cs-tabledata">Delete</a>
                         </form>
                     </td>
                 </tr>
                 <% } ) %>
         </table>
-        <a href="/products/new" id="create" class="btn btn-default">Create Product</a>
-
     </div>
 </div>
-<hr>

@@ -1,13 +1,10 @@
-
 //Configure the strategy for using passport for authentication in this app
-
 //import package for authentication
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 var Organization = require('../models/organization');
 
 module.exports = function(passport){
-
     //Reason for doing this way is for seperation of responsibility.
     //passport does not care how user is stored, it passes an id and lets the model handle getting the user
     //passport gives us a user and expects us to return an id

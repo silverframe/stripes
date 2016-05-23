@@ -1,68 +1,292 @@
-@import url(//fonts.googleapis.com/css?family=Sniglet:800);
+/* Global Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
 
 body {
-  font-family: Verdana, Tahoma, Geneva, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: left;
-  background: #81e7db;
-  padding: 5px 5px;
-}
-table{
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: left;
-  background: #81e7db;
-  padding: 0 10px;
-}
-h1 {
-  font-family: 'Sniglet', Helvetica, cursive;
-  letter-spacing: -2px;
-  font-size: 4.2rem;
-  text-shadow: 3px 0px 2px rgba(0,0,125,0.24), 0px 2px 5px rgba(255,255,255,0.7);
+  background-color: white;
+  font: 13.34px 'Roboto', sans-serif;
+  *font-size: small;
+  text-align: center;
 }
 
-h1:before {
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+p {
+  margin: 1em 0;
+}
+
+a {
+  color: #00a;
+}
+
+a:hover {
+  color: black;
+}
+
+a:visited {
+  /*color: #a0a;*/
+}
+
+table {
+  font-size: inherit;
+  font: 100%;
+}
+
+/* End of Reset */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+}
+
+
+/*h1:before {
   content: "The ";
   font-size: 1.8rem;
   margin: 2rem 0 -1rem 0;
   display: block;
-}
+}*/
 
+/* All Forms Styling */
 form, form input {
-  font-size: 1rem;
+  font-size: 16px;
+}
+/*******************************************************************************************/
+/* Forms - Login & Signup Forms */
+/*******************************************************************************************/
+.formContainer {
+    margin: 0 auto;
+    margin-top: 10vh;
+    padding: 30px;
+    width: 400px;
+    align-items: center;
+    text-align: center;
 }
 
-form input[type=text], form input[type=submit], form select {
-  font-size: 1rem;
-  border: 1px solid #66ccbd;
-  box-shadow: 0px 2px 2px rgba(0,0,0,0.08);
-  padding: 0.618em 1em;
-  border-radius: 5px;
-  background: white;
-  color: rgba(0,0,0,0.75);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+.cloudStoreLoginSignupBrand{
+  font-size: 35px;
+  color: #767676;
+  margin-bottom: 10px;
 }
 
-form input[type=submit]{
-  font-weight: bold;
+.cloudStoreLoginSignupBrand:hover{
+  color: #767676;
+  text-decoration: none;
 }
 
-form input[type=submit]:hover{
+.loginSignupMessage{
+    font-size: 21px;
+    font-weight: 100;
+}
+
+.cs-formInput{
+  background-color: #E2E6EB !important;
+  height: 50px;
+}
+/* hack to remove autofill input background color */
+/*.cs-formInput:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}*/
+
+.loginSignupSubmitButton{
+  width: 100%;
+  height: 50px;
+  border: 0px;
+  background-color: #00b0ff;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.loginSignupSubmitButton:hover{
+  background-color: #0E8BC3 !important;
+  color: #fff;
+}
+
+.form-bottom {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.form-bottom-signup {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.login-registerButton{
+  color: #00b0ff !important;
+  font-size: 14px;
+}
+
+.login-registerButton:hover {
+  color: #0E8BC3 !important;
+  text-decoration: none;
   cursor: pointer;
-  position: relative;
-  top: -1px;
 }
+
+
+/*******************************************************************************************/
+/* End of Forms  */
+/*******************************************************************************************/
+
 
 ul {
   text-align: left;
   max-width: 300px;
   margin: 2rem auto;
+}
+
+.landingNavPanel {
+  width: 100%;
+  z-index: 10;
+  text-align: left;
+}
+
+.cloudStoreLogo{
+  width:50px;
+}
+
+.cloudStoreNavBrand {
+  margin: 20px;
+  margin-left: 40px;
+}
+
+.cloudStoreBrand {
+  font-size: 35px;
+  color: #767676;
+  vertical-align: middle;
+}
+
+.cloudStoreBrand:hover{
+  text-decoration: none;
+  color: #767676;
+}
+
+.leftBodyContent {
+  margin-left: 70px;
+  margin-top: 90px;
+  text-align: left;
+}
+
+.tagline {
+  font-size: 80px;
+  font-weight: 100;
+  line-height: 98px;
+  color: #00b0ff;
+  width: 900px;
+  margin-bottom: 50px;
+}
+
+.loginButton{
+    background: #4285f4;
+    border-radius: 35px;
+    box-shadow: inset 0px 3px 0px -1px rgba(255,255,255,0.2),inset 0px -3px 0px -1px rgba(0,0,0,0.07),2px 3px 0px rgba(0,0,0,0.1),5px 3px 0px rgba(0,0,0,0.07);
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 25px 30px;
+    min-width: 150px;
+    text-align: center;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.loginButton:hover {
+    background: #00b0ff;
+    box-shadow: inset 0px 3px 0px -1px rgba(0,0,0,0.07),inset 0px -3px 0px -1px rgba(255,255,255,0.2),1px 1px 0px rgba(0,0,0,0.1),1px 1px 0px rgba(0,0,0,0.07);
+    color: #fff;
+}
+
+.registerParagraph {
+  font-size: 19px;
+  font-weight: 200;
+}
+
+.registerButton {
+  color: #00b0ff;
+  text-decoration: none;
+}
+
+.registerButton:hover{
+  color: #4285f4;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*******************************************************************************************/
+/* Page Content
+/*******************************************************************************************/
+.page-content-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.page-content-headerSection{
+    display: flex;
+}
+
+.page-content-header{
+    font-size: 16px;
+    font-weight: 300;
+    color: #37393A !important;
+    margin-top: 9px;
+}
+
+.createNewProduct {
+    font-size: 14px;
+    margin-left: 25px;
+    border-color: #4285f4 !important;
+    color: #37393A !important;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 2.5px !important;
+}
+
+.tableContainer{
+    background: #fff;
+    margin-top: 20px;
+    box-shadow: 5px 5px 5px 0 #ccc !important;
+}
+
+.cs-tablehead{
+    transform: translateY(25%);
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 400;
+}
+
+.cs-tabledata{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.editProduct {
+  color: #4285f4 !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.deleteProduct{
+  color: #F44242 !important;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
 }

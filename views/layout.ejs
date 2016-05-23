@@ -3,35 +3,28 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Apple Pi</title>
-    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <title>CloudStore</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/style.css" />
     <style>
-    .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-      margin-left: -90px;
-      font-size: 20px;
-    }
+        .backgroundColor{
+          background: #ECEFF1;
+        }
 
-    .navbar-header {
-      font-weight: 700;
-    }
-    .tokenDisplay {
-      word-wrap: break-word;
-    }
-	.container {
-      font-family: 'Oxygen', sans-serif;
-    }
+        .tokenDisplay {
+            word-wrap: break-word;
+        }
 
         #sidebar-wrapper {
-            /*z-index: 1;
-          width: 250px;
-          overflow-y: hidden;*/
-            background: #00293C;
+            background: #fff;
             opacity: 0.9;
             min-height: 100%;
             height: 100vh;
             padding-left: 0px;
             padding-right: 0px;
+            border-right: 1px solid #fff;
+            box-shadow: 0 10px 16px 0 #ccc !important
         }
 
         .row {
@@ -39,16 +32,15 @@
         }
 
         #page-content-wrapper {
-            /*width: 100%;*/
+            width: 1000px;
             padding-top: 20px;
             padding-left: 50px;
             float: left;
-            height: 90vh;
-            background: #FDffff;
+            min-height: 100vh;
         }
 
         #wrapper {
-            background: #F1F1F2;
+            /*background: #F1F1F2;*/
         }
 
         #wrapper.menuDisplayed #sidebar-wrapper {
@@ -61,48 +53,67 @@
 
         .sidebar-nav {
             list-style: none;
-            padding: 0;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .siderbar-width{
+          min-width: 240px;
+          max-width: 240px;
+        }
+
+        .sidebar-BorderBottom {
+            border-bottom: 1px solid #cfd8dc
+
+        }
+
+        .sidebar-logo {
+            height: 40px;
+            display: inline-block;
+        }
+
+        .sidebar-brandDiv{
+          display: inline-block;
+          margin-left: 5px;
+        }
+
+        .sidebar-brand {
+            font-size: 16px !important;
+            font-weight: 400 !important;
+            width: 80px;
         }
 
         .sidebar-nav li {
-            text-indent: 15px;
-            line-height: 40px;
+            padding-left: 20px;
+            line-height: 42px;
+            padding-top: 4px;
+            padding-bottom: 4px;
         }
 
         .sidebar-nav li a {
             display: block;
             text-decoration: none;
-            font-family: 'Oxygen', sans-serif;
-            font-weight: 300;
-            color: rgb(202, 212, 228);
-        }
-
-        .navbar-nav>li>a:hover {
-          color: rgb(6, 163, 179);
-          background: rgb(3, 35, 47);
+            font-size: 14px;
+            font-weight: 400;
+            color: #37393A;
         }
 
         .sidebar-nav li:first-child {
-            padding-top: 10px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
         }
 
-        .sidebar-nav li a:hover {
-            background: rgb(11, 29, 41);
-            color: rgb(6, 163, 179);
+        /* Sidebar hover effect -> hover over list and not the anchor*/
+        .sidebar-nav li:hover {
+            background: #eeeeee;
+        }
+        .sidebar-nav-listName{
+            padding-left: 10px;
         }
 
-        .navbar {
-            margin-bottom: 0px;
-            /*background: rgb(7, 64, 88);*/
-            background: rgb(3, 35, 47);
-            color: rgb(242, 242, 242);
-            margin-bottom: -10px;
-            border-radius: 0px !important;
-        }
-
-        .navbar a {
-            color: rgb(242, 242, 242);
-            font-weight: 700;
+        .icon-highlighted{
+          color: #4285f4;
         }
 
         hr {
@@ -113,7 +124,6 @@
             /*border-bottom: 1px solid gray;*/
             padding: 5px 10px;
             padding-top: 30px;
-            font-family: 'Oxygen', sans-serif;
         }
 
         tr,
@@ -124,82 +134,56 @@
         }
 
         span {
-          padding-right: 10px;
+            padding-right: 10px;
         }
 
         th {
-          color: rgb(146, 139, 147);
-          padding-bottom: 20px;
+            color: rgb(146, 139, 147);
+            padding-bottom: 20px;
         }
 
     </style>
-
-  </head>
+</head>
 
 <body>
 
-    <nav class="navbar">
-        <div class="container">
-            <!-- <div class="navbar-header "> -->
-                <a class="navbar-brand" href="/">TradePanda</a>
-            <!-- </div> -->
-            <div class="collapse navbar-collapse" id="user-menu">
-                <ul class="nav navbar-nav navbar-right ">
-                    <% if (currentUser) { %>
-                        <li><a href="/logout">Logout</a></li>
-                        <% } else { %>
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/signup">Signup</a></li>
-                            <% } %>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <% if (currentUser) { %>
-        <div class="wrapper container-fluid">
-            <div class="row">
-                <div id="sidebar-wrapper" class="col-md-2">
-                    <ul class="sidebar-nav">
-                        <!-- <li><a href="/"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span>  APPLE PI</a></li> -->
-                        <li><a href="/"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>  Dashboard</a></li>
-                        <li><a href="/products"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  Products</a></li>
-                        <li><a href="/sales"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  Sales</a></li>
-                        <li><a href="/stock_adjustment"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Stock Adjustments</a></li>
-                        <li><a href="/token"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Token </a></li>
-                    </ul>
-                </div>
+      <div class="backgroundColor">
+          <div class="wrapper container-fluid">
+              <div class="row">
+                  <div id="sidebar-wrapper" class="siderbar-width col-xs-3 col-sm-3 col-md-3 col-lg-2">
+                      <ul class="sidebar-nav">
+                          <li class="sidebar-BorderBottom"><img class="sidebar-logo" src="https://scontent-sin1-1.xx.fbcdn.net/v/t1.0-9/13239488_10157080752595106_7343080580186167984_n.jpg?oh=41bf9c52c5bfcf2bd7477f24bb92fd08&oe=57D1E580"/><div class="sidebar-brandDiv"><a href="/" class="sidebar-brand">CloudStore</a></div></li>
+                          <li><a href="/"><span class="glyphicon glyphicon-th icon-highlighted" aria-hidden="true"></span>  <span class="sidebar-nav-listName">Dashboard</span></a></li>
+                          <li><a href="/products"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  <span class="sidebar-nav-listName">Products</span></a></li>
+                          <li><a href="/sales"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>  <span class="sidebar-nav-listName">Sales</span></a></li>
+                          <li><a href="/stock_adjustment"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span><span class="sidebar-nav-listName">Stock Adjustments</span></</a></li>
+                          <li><a href="/token"><span class="glyphicon glyphicon-link" aria-hidden="true"></span><span class="sidebar-nav-listName">API Token Application</span></</a></li>
+                          <li><a href="/logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><span class="sidebar-nav-listName">Log Out</span></a></li>
+                      </ul>
+                  </div>
 
-                <div id="page-content-wrapper" class="col-md-10">
-                    <div>
-                        <!-- <a href="#" class= "btn btn-success" id="toggle-menu">Toggle Menu</a> -->
-                        <%- body %>
-                    </div>
-                </div>
+                  <div id="page-content-wrapper">
+                      <div>
+                          <!-- <a href="#" class= "btn btn-success" id="toggle-menu">Toggle Menu</a> -->
+                          <%- body %>
+                      </div>
+                  </div>
 
-            </div>
+              </div>
+          </div>
+      </div>
+    <% } else { %>
+        <div>
+            <%- body %>
         </div>
-        <% } else { %>
-            <div class="wrapper container">
-                <div class="row">
+    <% } %>
 
-                    <div id="page-content-wrappert" class="col-md-12">
-                        <div>
-                            <!-- <a href="#" class= "btn btn-success" id="toggle-menu">Toggle Menu</a> -->
-                            <%- body %>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        <% } %>
-
-      
-
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="/javascripts/stockScript.js"></script>
-<script src="/javascripts/salesScript.js"></script>
-<script src="/javascripts/tokenScript.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="/javascripts/stockScript.js"></script>
+    <script src="/javascripts/salesScript.js"></script>
+    <script src="/javascripts/tokenScript.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 
 </html>

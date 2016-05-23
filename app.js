@@ -16,8 +16,6 @@ var methodOverride = require('method-override');
 var databaseURL = process.env.MONGODB_URI || 'mongodb://localhost/stripes-db-ver1';
 mongoose.connect(databaseURL);
 
-
-
 // Setup middleware
 app.use(morgan('dev'));
 app.use(cookieParser());
@@ -43,6 +41,7 @@ app.use(function(error, request, response, next) {
 })
 
 app.use(ejsLayouts);
+// Linking layout.ejs with our stylesheets - the path starts from public 
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
 
