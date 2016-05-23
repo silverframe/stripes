@@ -5,82 +5,128 @@
     <div>
         <h1 class="page-content-header">Inventory List / New Product</h1>
     </div>
+    <br />
 
-    <div>
-        <form method="post" action="/products">
-          <div class="form-group col-md-4">
-            <label for="sku">SKU</label>
-            <input class="form-control" type="text" name="product[sku]" id="sku">
-          </div>
+    <div class="addNewProductsContainer">
 
-          <div class="form-group col-md-4">
-            <label for="name">Name</label>
-            <input class="form-control" type="text" name="product[name]" id="name">
-          </div>
+        <form method="post" action="/products" class="form-horizontal">
 
-          <div class="form-group col-md-4">
-            <label for="description">Description</label>
-            <input class="form-control" type="text" name="product[description]" id="description">
-          </div>
+          <div class="form-verticalFlex">
+              <div class="form-doubleColumn">
+                  <div class="page-content-newProductMessage">
+                      <h2 class="messageHeader">Product Details</h2>
+                      <p class="messageContent">Enter your product sku, name, description, type, brand and supplier details to set up your product</p>
+                  </div>
+                  <div class="productDetailsInput">
+                      <div class="form-group">
+                          <label class="control-label col-sm-4 input-labels" for="sku">SKU</label>
+                          <div class="col-sm-8">
+                              <input class="form-control" type="text" name="product[sku]" id="sku">
+                          </div>
+                      </div>
 
-          <div class="form-group col-md-4">
-            <label for="supplier">Supplier</label>
-            <input class="form-control" type="text" name="product[supplier]" id="supplier">
-          </div>
+                      <div class="form-group">
+                          <label class="control-label col-sm-4 input-labels" for="name">Name</label>
+                          <div class="col-sm-8">
+                              <input class="form-control" type="text" name="product[name]" id="name">
+                          </div>
+                      </div>
 
-          <div class="form-group col-md-4">
-            <label for="productType">Product Type</label>
-            <input class="form-control" type="text" name="product[productType]" id="productType">
-          </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="productType">Product Type</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[productType]" id="productType">
+                        </div>
+                      </div>
 
-          <div class="form-group col-md-4">
-            <label for="brand">Brand</label>
-            <input class="form-control" type="text" name="product[brand]" id="brand">
-          </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="description">Description</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[description]" id="description">
+                        </div>
+                      </div>
 
-          <div class="form-group col-md-4">
-            <label for="tags">Tags</label>
-            <input class="form-control" type="text" name="product[tags]" id="tags">
-          </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="brand">Brand</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[brand]" id="brand">
+                        </div>
+                      </div>
 
-          <!-- <div class="form-group col-md-4">
-            <label for="previousCost">Previous Cost</label>
-            <input class="form-control" type="text" name="product[previousCost]" id="previousCost">
-          </div> -->
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="supplier">Supplier</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[supplier]" id="supplier">
+                        </div>
+                      </div>
 
-          <div class="form-group col-md-4">
-            <label for="quantity">Quantity</label>
-            <input class="form-control" type="text" name="product[quantity]" id="quantity">
-          </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="tags">Tags</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[tags]" id="tags">
+                        </div>
+                      </div>
 
-          <div class="form-group col-md-4">
-            <label for="active">Active</label>
-            <input class="form-control" type="text" name="product[active]" id="active">
-          </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="imageUrl">Image Url</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[imageUrl]" id="imageUrl">
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <br /><br /><div class="page-separator"></div><br /><br />
+              <div class="form-doubleColumn">
+                  <div class="page-content-newProductMessage">
+                      <h2 class="messageHeader">Initial Values</h2>
+                      <p class="messageContent">Set up the initial stock levels as well as the basic pricing</p>
+                      <p class="messageContent">This information is then used to ensure accurate cost pricing and reporting in the future</p>
+                  </div>
+                  <div class="productDetailsInput">
 
-          <div class="form-group col-md-4">
-            <label for="costPrice">Cost Price</label>
-            <input class="form-control" type="text" name="product[costPrice]" id="costPrice">
-          </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-4 input-labels" for="active">Active</label>
+                      <div class="col-sm-8">
+                          <input class="form-control" type="text" name="product[active]" id="active">
+                      </div>
+                    </div>
 
-          <div class="form-group col-md-4">
-            <label for="brand">Selling Price</label>
-            <input class="form-control" type="text" name="product[sellingPrice]" id="sellingPrice">
-          </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-4 input-labels" for="quantity">Starting Quantity</label>
+                      <div class="col-sm-8">
+                          <input class="form-control" type="text" name="product[quantity]" id="quantity">
+                      </div>
+                    </div>
 
-          <div class="form-group col-md-4">
-            <label for="imageUrl">Image Url</label>
-            <input class="form-control" type="text" name="product[imageUrl]" id="imageUrl">
-          </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-4 input-labels" for="costPrice">Cost Price</label>
+                      <div class="col-sm-8">
+                          <input class="form-control" type="text" name="product[costPrice]" id="costPrice">
+                      </div>
+                    </div>
 
-          <div class="form-group col-md-10">
-          </div>
-          <div class="form-group col-md-2">
-            <!-- <input class="btn btn-primary" type="submit"> -->
-            <button type="submit" class="btn btn-primary col-md-12" >Create Product</button>
+                    <div class="form-group">
+                      <label class="control-label col-sm-4 input-labels" for="sellingPrice">Selling Price</label>
+                      <div class="col-sm-8">
+                          <input class="form-control" type="text" name="product[sellingPrice]" id="sellingPrice">
+                      </div>
+                    </div>
+
+                  </div>
+              </div>
+
+              <hr />
+
+              <div>
+                  <div class="form-group">
+                    <button type="submit" class="btn submitNewProductButton" >Create Product</button>
+                  </div>
+              </div>
+
           </div>
 
         </form>
+
     </div>
 
 </div>

@@ -235,6 +235,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    /*width: 1000px;*/
 }
 
 .page-content-headerSection{
@@ -246,6 +247,18 @@ ul {
     font-weight: 300;
     color: #37393A !important;
     margin-top: 9px;
+}
+
+.page-content-headerMessage{
+    background: #fff;
+    width: 500px;
+    margin-top: 20px;
+    box-shadow: 5px 5px 5px 0 #ccc !important;
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 15px;
+    line-height: 1.7;
+    color: #7D7D7D;
 }
 
 .createNewProduct {
@@ -289,4 +302,65 @@ ul {
   padding-left: 20px;
   padding-right: 20px;
   cursor: pointer;
+}
+
+/*******************************************************************************************/
+/* Add New Products */
+.addNewProductsContainer{
+    width: 900px;
+}
+.form-verticalFlex{
+    display: flex;
+    flex-direction: column;
+}
+.form-doubleColumn{
+    display: flex;
+    justify-content: flex-start;;
+}
+.productDetailsInput{
+    width:400px;
+    margin-left: 30px;
+}
+
+.input-labels{
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.page-content-newProductMessage{
+    background: #fff;
+    width: 300px;
+    box-shadow: 2px 2px 2px 0 #ccc !important;
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 15px;
+    line-height: 1.3;
+    color: #7D7D7D;
+    height: 200px;
+}
+
+.messageHeader {
+  font-style: oblique;
+  font-size: 16px;
+  color: #5A5A5A;
+}
+
+.messageContent{
+    font-size: 14px;
+}
+
+.page-separator{
+    border-bottom: 1px solid #dadada;
+}
+
+.submitNewProductButton{
+    width:100%;
+    background: #4285f4;
+    color: #fff !important;
+    padding-top: 7px;
+    font-size: 14px;
+}
+
+.submitNewProductButton:hover{
+    background: #3060B1;
 }
