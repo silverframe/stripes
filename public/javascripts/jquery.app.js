@@ -45,7 +45,7 @@ function sendOurDataViaAJAX(e){
 function getProducts(){
   $.ajax({
     // insert your token here
-    headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU3NDQ3MTU5NzRlOTE2NTM3N2QwODRmNyIsIndlYlVSTCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDAwMCIsImlhdCI6MTQ2NDEwMzQxMn0.JLXxW_KYhc3WDnpaGdtnPZP0mdORK9uQeoDavz-_E1w"},
+    headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU3NDQ3MTU5NzRlOTE2NTM3N2QwODRmNyIsIndlYlVSTCI6ImxvY2FsaG9zdCIsImlhdCI6MTQ2NDExNjk3N30.6WPp59V-D_A_OjJFzJntEQSwIiIONCFcFLV3RGJbVio"},
     type: 'GET',
     url: serverUrl+'/api/products'
   })
