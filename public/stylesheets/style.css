@@ -282,19 +282,29 @@ ul {
     padding-left: 20px;
     padding-right: 20px;
     font-weight: 400;
+    color:#37393A;
 }
 
 .cs-tabledata{
     padding-top: 10px;
     padding-bottom: 10px;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.cs-tabledata-paraRemoveMargin{
+  margin: 0px;
+  margin-bottom: 5px;
 }
 
 .editProduct {
   color: #4285f4 !important;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.editProduct:hover {
+  text-decoration: none;
 }
 
 .deleteProduct{
@@ -306,9 +316,11 @@ ul {
   border: 0px;
 }
 
+
+
 /*******************************************************************************************/
 /* Add New Products */
-.addNewProductsContainer{
+.containerWidth{
     width: 900px;
 }
 .form-verticalFlex{
@@ -374,4 +386,117 @@ ul {
     color: #fff !important;
     padding-top: 7px;
     font-size: 14px;
+}
+
+/*******************************************************************************************/
+/* New Stock Adjustment Page */
+.tableContainer-stockAdj{
+    background: #fff;
+    box-shadow: 2px 2px 2px 0 #ccc !important;
+    padding: 15px 20px;
+    padding-bottom: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.select-group{
+  text-align: left;
+}
+
+.select-labels{
+  font-size: 15px;
+  font-weight: 300;
+  margin-right: 10px;
+}
+
+select {
+  font-family: 'Roboto', serif;
+  border: 1px solid #4285f4;
+  font-size: 14px;
+}
+
+.cs-tablehead-stocksAdj{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 7px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #37393A;
+}
+
+.cs-tabledata-stocksAdj{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#addNewAdjustmentItem{
+  width: 100%;
+  background: #4285f4;
+  padding: 5px 0px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#addNewSalesItem{
+  width: 100%;
+  background: #4285f4;
+  padding: 5px 0px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.notes-labels{
+  font-size: 15px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.notes-textBox{
+    box-shadow: 2px 2px 2px 0 #ccc !important;
+    border: 0px;
+}
+
+/*******************************************************************************************/
+/* Stock Adjustment Details */
+
+.container-details{
+    background: #fff;
+    box-shadow: 2px 2px 2px 0 #ccc !important;
+    padding: 15px 20px;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+.stockAdj-details{
+  text-align: left;
+}
+
+.detail-labels{
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.bold-labels{
+  font-weight: 400;
+}
+
+.stock-details-table{
+  margin-top: 20px;
+}
+
+.notes-margin{
+  margin-top: 20px;
+}
+
+.notes-box{
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 2.5px;
 }

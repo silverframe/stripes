@@ -1,10 +1,44 @@
-<h3>Application for API</h3>
-<form method="post" action="/token" id="webURLForm">
-  <label for="webURL">Your Website URL:</label>
-  <input class="form-control" type="text" name="webURL" id="webURL">
-  <input class="btn btn-default" type="submit">
-</form>
+<style>
+    .webForm{
+        width:500px;
+        margin-top: 15px;
+        text-align: center;
+    }
+    
+    .webForm-label{
+        margin-bottom: 20px;
+        font-weight: 400;
+    }
+    
+    .btn-submit{
+        width: 100%;
+        background: #4285f4;
+        color: #fff;
+    }
+    
+    .btn-submit:hover{
+        color: #fff;
+    }
+    
+    .api-note{
+        font-size: 13px;
+        margin-top: 30px;
+    }
+</style>
+<div class="page-content-section">
+    <div>
+        <h1 class="page-content-header">API Application</h1>
+    </div>
 
-<!-- Display Token here using jquery once the form is submitted-->
-<div id="tokenDisplay"></div>
-<!-- <span class="tokenDisplay">Use this token to access API: <% if (false) {%><%= token %><%}%></span> -->
+    <form method="post" action="/token" id="webURLForm" class="webForm">
+        <label for="webURL" class="webForm-label">Provide Your Website URL:</label>
+        <input class="form-control webForm-label" type="text" name="webURL" id="webURL">
+        <input class="btn btn-submit" type="submit">
+    </form>
+    
+    <p class="api-note">Note: Only the website provided will be able to access the API</p>
+
+    <!-- Display Token here using jquery once the form is submitted-->
+    <div id="tokenDisplay"></div>
+    <!-- <span class="tokenDisplay">Use this token to access API: <% if (false) {%><%= token %><%}%></span> -->
+</div>

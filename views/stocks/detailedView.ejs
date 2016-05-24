@@ -1,31 +1,44 @@
-<div>
-  <span>Reason: </span>
-  <span><%= adjustment.reason %></span>
-  <br />
-  <span>User: </span>
-  <span><%= adjustment.user.local.name %></span>
+<div class="page-content-section">
+    <div>
+        <h1 class="page-content-header">Stock Adjustments / Adjustment Details</h1>
+    </div>
+    <br />
+    
+    <div class="container-details">
+      <div class="stockAdj-details">
+          <span class="detail-labels bold-labels">Reason: </span>
+          <span class="detail-labels"><%= adjustment.reason %></span>
+          <hr />
+          <span class="detail-labels bold-labels">User: </span>
+          <span class="detail-labels"><%= adjustment.user.local.name %></span>
+      </div>
+      <table class="stock-details-table">
+        <tr>
+          <th  class="cs-tablehead">SKU</th>
+          <th  class="cs-tablehead">Name</th>
+          <th  class="cs-tablehead">Description</th>
+          <th  class="cs-tablehead">Supplier</th>
+          <th  class="cs-tablehead">Quantity Change</th>
+          <th  class="cs-tablehead">Created Date</th>
+        </tr>
+        <% adjustment.adjustmentList.forEach( function(item) { %>
+          <tr>
+            <td class="cs-tabledata"><%= item.product.sku %></td>
+            <td class="cs-tabledata"><%= item.product.name %></td>
+            <td class="cs-tabledata"><%= item.product.description %></td>
+            <td class="cs-tabledata"><%= item.product.supplier %></td>
+            <td class="cs-tabledata"><%= item.qtyChange %></td>
+            <td class="cs-tabledata"><%= adjustment.createdDate.toDateString() %></td>
+          </tr>
+        <% })%>
+      </table>
+      
+      <div class="stockAdj-details notes-margin">
+          <span class="detail-labels bold-labels">Notes</span>
+          <div class="notes-box"><%= adjustment.notes%></div>
+      </div>
+
+    </div>
+    
+   
 </div>
-<table>
-    <tr>
-      <th>SKU</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Supplier</th>
-      <th>Quantity Change</th>
-      <th>Created Date</th>
-    </tr>
-    <% adjustment.adjustmentList.forEach( function(item) { %>
-      <tr>
-        <td><%= item.product.sku %></td>
-        <td><%= item.product.name %></td>
-        <td><%= item.product.description %></td>
-        <td><%= item.product.supplier %></td>
-        <td><%= item.qtyChange %></td>
-        <td><%= adjustment.createdDate.toDateString() %></td>
-      </tr>
-    <% })%>
-</table>
-  <div>
-    <span>Notes</span>
-    <div>put a big box here</div>
-  </div>

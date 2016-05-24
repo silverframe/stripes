@@ -1,42 +1,33 @@
-<div class="container">
-  <div class="row">
-    <style>
-      h1, table, th, td {
-      /*border: 2px solid black;*/
-      padding: 5px 10px;
-      }
-
-      .btn {
-        margin-top: 30px; 
-      }
-    </style>
-
-    <!-- <a href="/stock_adjustment/new" class="btn btn-default" >New Stock Adjustment</a> -->
-
-  
-
-    <table>
+<div class="page-content-section">
+    <div class="page-content-headerSection">
+        <div>
+            <h1 class="page-content-header">Stock Adjustments</h1>
+        </div>
+        <div>
+            <a  href="/stock_adjustment/new" class="btn btn-default createNewProduct">New Stock Adjustment</a>
+        </div>
+    </div>
+    <table class = "tableContainer">
     <tr>
-      <th>ID</th>
-      <th>Reason</th>
-      <th>Notes</th>
-      <th>Created Date</th>
-      <th>User</th>
+      <th class="cs-tablehead">ID</th>
+      <th class="cs-tablehead">Reason</th>
+      <th class="cs-tablehead">Notes</th>
+      <th class="cs-tablehead">Created Date</th>
+      <th class="cs-tablehead">User</th>
+      <th class="cs-tablehead">Action</th>
     </tr>
     <% adjustments.forEach( function(adjustment) { %>
     <tr>
-      <td><%= adjustment._id %></td>
-      <td><%= adjustment.reason %></td>
-      <td><%= adjustment.notes %></td>
-      <td><%= adjustment.createdDate.toDateString() %></td>
-      <td><%= adjustment.user.local.name %></td>
+      <td class="cs-tabledata"><%= adjustment._id %></td>
+      <td class="cs-tabledata"><%= adjustment.reason %></td>
+      <td class="cs-tabledata"><%= adjustment.notes %></td>
+      <td class="cs-tabledata"><%= adjustment.createdDate.toDateString() %></td>
+      <td class="cs-tabledata"><%= adjustment.user.local.name %></td>
       <td>
-        <a class="btn btn-primary" href= <%= "/stock_adjustment/" + adjustment._id %> >Show Details</a>
+        <a class="editProduct" href= <%= "/stock_adjustment/" + adjustment._id %> >Show Details</a>
       </td>
     </tr>
     <% } ) %>
     </table>
-    <a href="/stock_adjustment/new" class="btn btn-default" >New Stock Adjustment</a>
-  </div>
+   
 </div>
-<hr>
