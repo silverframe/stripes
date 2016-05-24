@@ -302,6 +302,8 @@ ul {
   padding-left: 20px;
   padding-right: 20px;
   cursor: pointer;
+  background: none;
+  border: 0px;
 }
 
 /*******************************************************************************************/
@@ -359,8 +361,17 @@ ul {
     color: #fff !important;
     padding-top: 7px;
     font-size: 14px;
+    margin-bottom: 15px;
 }
 
 .submitNewProductButton:hover{
     background: #3060B1;
+}
+
+.deleteProductButton{
+    width:100%;
+    background: #F44242;
+    color: #fff !important;
+    padding-top: 7px;
+    font-size: 14px;
 }

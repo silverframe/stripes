@@ -1,77 +1,133 @@
-<h3>Edit Product</h3>
+<div class="page-content-section">
+    <div>
+        <h1 class="page-content-header">Inventory List / Edit Product Details</h1>
+    </div>
+    <div class="addNewProductsContainer">
 
-<form method="post" action=<%= "/products/" + product._id + "?_method=PATCH" %> >
-  <div class="form-group col-md-4">
-    <label for="sku">SKU</label>
-    <input class="form-control" type="text" name="product[sku]" id="sku"  value="<%= product.sku %>">
-  </div>
+        <form method="post" class="form-horizontal" action=<%= "/products/" + product._id + "?_method=PATCH" %> >
 
-  <div class="form-group col-md-4">
-    <label for="name">Name</label>
-    <input class="form-control" type="text" name="product[name]" id="name" value="<%= product.name %>">
-  </div>
+          <div class="form-verticalFlex">
+              <div class="form-doubleColumn">
+                  <div class="page-content-newProductMessage">
+                      <h2 class="messageHeader">Product Details</h2>
+                      <p class="messageContent">Edit your product sku, name, description, type, brand and supplier details</p>
+                  </div>
+                  <div class="productDetailsInput">
+                      <div class="form-group">
+                          <label class="control-label col-sm-4 input-labels" for="sku">SKU</label>
+                          <div class="col-sm-8">
+                              <input class="form-control" type="text" name="product[sku]" id="sku" value="<%= product.sku %>">
+                          </div>
+                      </div>
 
-  <div class="form-group col-md-4">
-    <label for="description">Description</label>
-    <input class="form-control" type="text" name="product[description]" id="description" value="<%= product.description %>">
-  </div>
+                      <div class="form-group">
+                          <label class="control-label col-sm-4 input-labels" for="name">Name</label>
+                          <div class="col-sm-8">
+                              <input class="form-control" type="text" name="product[name]" id="name" value="<%= product.name %>">
+                          </div>
+                      </div>
 
-  <div class="form-group col-md-4">
-    <label for="supplier">Supplier</label>
-    <input class="form-control" type="text" name="product[supplier]" id="supplier" value="<%= product.supplier %>">
-  </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="productType">Product Type</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[productType]" id="productType" value="<%= product.productType %>">
+                        </div>
+                      </div>
 
-  <div class="form-group col-md-4">
-    <label for="productType">Product Type</label>
-    <input class="form-control" type="text" name="product[productType]" id="productType" value="<%= product.productType %>">
-  </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="description">Description</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[description]" id="description" value="<%= product.description %>">
+                        </div>
+                      </div>
 
-  <div class="form-group col-md-4">
-    <label for="brand">Brand</label>
-    <input class="form-control" type="text" name="product[brand]" id="brand" value="<%= product.brand %>">
-  </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="brand">Brand</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[brand]" id="brand" value="<%= product.brand %>">
+                        </div>
+                      </div>
 
-  <div class="form-group col-md-4">
-    <label for="tags">Tags</label>
-    <input class="form-control" type="text" name="product[tags]" id="tags" value="<%= product.tags %>">
-  </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="supplier">Supplier</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[supplier]" id="supplier" value="<%= product.supplier %>">
+                        </div>
+                      </div>
 
-  <!-- <div class="form-group col-md-4">
-    <label for="previousCost">Previous Cost</label>
-    <input class="form-control" type="text" name="product[previousCost]" id="previousCost" value="<%= product.previousCost %>">
-  </div> -->
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="tags">Tags</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[tags]" id="tags" value="<%= product.tags %>">
+                        </div>
+                      </div>
 
-  <div class="form-group col-md-4">
-    <label for="quantity">Quantity</label>
-    <input class="form-control" type="text" name="product[quantity]" id="quantity" value="<%= product.quantity %>">
-  </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 input-labels" for="imageUrl">Image Url</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="product[imageUrl]" id="imageUrl" value="<%= product.imageUrl %>">
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <br /><br /><div class="page-separator"></div><br /><br />
+              <div class="form-doubleColumn">
+                  <div class="page-content-newProductMessage">
+                      <h2 class="messageHeader">Initial Values</h2>
+                      <p class="messageContent">Set up the initial stock levels as well as the basic pricing</p>
+                      <p class="messageContent">This information is then used to ensure accurate cost pricing and reporting in the future</p>
+                  </div>
+                  <div class="productDetailsInput">
 
-  <div class="form-group col-md-4">
-    <label for="active">Active</label>
-    <input class="form-control" type="text" name="product[active]" id="active" value="<%= product.active %>">
-  </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-4 input-labels" for="active">Active</label>
+                      <div class="col-sm-8">
+                          <input class="form-control" type="text" name="product[active]" id="active" value="<%= product.active %>">
+                      </div>
+                    </div>
 
-  <div class="form-group col-md-4">
-    <label for="costPrice">Cost Price</label>
-    <input class="form-control" type="text" name="product[costPrice]" id="costPrice" value="<%= product.costPrice %>">
-  </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-4 input-labels" for="quantity">Starting Quantity</label>
+                      <div class="col-sm-8">
+                          <input class="form-control" type="text" name="product[quantity]" id="quantity" value="<%= product.quantity %>">
+                      </div>
+                    </div>
 
-  <div class="form-group col-md-4">
-    <label for="brand">Selling Price</label>
-    <input class="form-control" type="text" name="product[sellingPrice]" id="sellingPrice" value="<%= product.sellingPrice %>">
-  </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-4 input-labels" for="costPrice">Cost Price</label>
+                      <div class="col-sm-8">
+                          <input class="form-control" type="text" name="product[costPrice]" id="costPrice" value="<%= product.costPrice %>">
+                      </div>
+                    </div>
 
-  <div class="form-group col-md-4">
-    <label for="imageUrl">Image Url</label>
-    <input class="form-control" type="text" name="product[imageUrl]" id="imageUrl" value="<%= product.imageUrl %>">
-  </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-4 input-labels" for="sellingPrice">Selling Price</label>
+                      <div class="col-sm-8">
+                          <input class="form-control" type="text" name="product[sellingPrice]" id="sellingPrice" value="<%= product.sellingPrice %>">
+                      </div>
+                    </div>
 
-  <div class="form-group col-md-2">
-    <button type="submit" class="btn btn-primary col-md-12" value="Submit">Update Product</button>
-  </div>
+                  </div>
+              </div>
 
-</form>
+              <hr />
 
-<form method="POST" action=<%= "/products/" + product._id + "?_method=DELETE" %> >
-  <button type="submit" class="btn btn-danger col-md-2">Delete Product</button>
-</form>
+              <div>
+                  <div>
+                    <button type="submit" class="btn submitNewProductButton" value="Submit" >Update Product</button>
+                  </div>
+              </div>
+
+
+          </div>
+
+        </form>
+        
+        
+            <form method="POST" action=<%= "/products/" + product._id + "?_method=DELETE" %> >
+                <button type="submit" class="btn deleteProductButton">Delete Product</button>
+            </form>
+       
+
+    </div>
+</div>
