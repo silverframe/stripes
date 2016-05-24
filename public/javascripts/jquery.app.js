@@ -5,9 +5,9 @@ $(document).ready(function(){
 });
 
 // For testing (Development)
-//var serverUrl= "http://localhost:4000"
+var serverUrl= "http://localhost:4000"
 // For Production
-var serverUrl = "https://agile-shore-23356.herokuapp.com"
+// var serverUrl = "https://agile-shore-23356.herokuapp.com"
 
 function sendOurDataViaAJAX(e){
     //stay on page
@@ -45,7 +45,7 @@ function sendOurDataViaAJAX(e){
 function getProducts(){
   $.ajax({
     // insert your token here
-    headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU3MGZkYTFkYjBlZTFiMDMwMDNhYTE1MyIsIndlYlVSTCI6ImFnaWxlLXNob3JlLTIzMzU2Lmhlcm9rdWFwcC5jb20iLCJpYXQiOjE0NjA2NTcwNTd9.Dypn3JjHhT8e3f4RX-vTBI7uBE_h4bcnbz155avdxhg"},
+    headers: {'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU3NDQ3MTU5NzRlOTE2NTM3N2QwODRmNyIsIndlYlVSTCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDAwMCIsImlhdCI6MTQ2NDEwMzQxMn0.JLXxW_KYhc3WDnpaGdtnPZP0mdORK9uQeoDavz-_E1w"},
     type: 'GET',
     url: serverUrl+'/api/products'
   })
